@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   validates 'name', presence: true,
             length: { minimum: 2 }
-  # in this line i 
+  # in this line i don't follow task where minimum age is defined as 18 (Let it be 6 ;)
   validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 6, less_than_or_equal_to: 100 }
   validates :email, format: {with:  /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i }, uniqueness: true,
              allow_nil: true, allow_blank: true
