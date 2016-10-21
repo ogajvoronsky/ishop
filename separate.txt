@@ -1,0 +1,9 @@
+
+# Selecting all products from the first cart
+Cart.first.products
+
+# Selecting all products from the cart of the last user.
+(Cart.find_by account_id: (Account.find_by user_id: User.last.id).id).products
+
+# Gathering total price sum of the products from the first cart.
+Cart.first.products.sum 'price'

@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  host: localhost
+  user: ishop2
+  password: cursor123
+  
+development:
+  <<: *default
+  database: ishop2-dev
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: ishop2-test
+
+production:
+  <<: *default
+  database: ishop-production
+
