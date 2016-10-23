@@ -5,20 +5,20 @@ class User < ApplicationRecord
   validates 'name', presence: true,
             length: { minimum: 2 }
   # in this line i don't follow task where minimum age is defined as 18 (Let it be 6 ;)
-  validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 6, less_than_or_equal_to: 100 }
+  validates :age, numericality: { only_integer: true }, :inclusion => { :in => 6..100 }
   validates :email, format: {with:  /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i }, uniqueness: true,
-             allow_nil: true, allow_blank: true
+             allow_blank: true
 
   after_create :create_account_for_user
   after_create :increment_balance, if: :adult?
 
-  protected
+  private
     def create_account_for_user
-      Account.new(user_id: self.id, balance: 0).save
+      create_account(balance: 0)
     end
 
     def increment_balance
-      (Account.find_by user_id: self.id).update_column('balance', 100)
+      self.account.update(balance: 100)
     end
 
     def adult?
