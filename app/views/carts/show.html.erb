@@ -1,0 +1,24 @@
+<h1>Current Cart </h1>
+<% @cart.inspect %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Products', product_path %>
