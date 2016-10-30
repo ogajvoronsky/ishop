@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   private
   def set_current_cart
+    session[:cart_id] = Cart.create.id if session[:cart_id].nil?
     session[:cart_id] ||= Cart.create.id
   end
 end

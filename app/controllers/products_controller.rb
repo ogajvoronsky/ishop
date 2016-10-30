@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :destroy]
+  before_action :set_product, only: [ :show, :destroy ]
 
   def index
     @products = Product.all
@@ -10,17 +10,17 @@ class ProductsController < ApplicationController
   end
 
   def create
-    # p params
     Product.create(products_param)
     redirect_to products_path
   end
 
   def show
+
   end
 
-  def destory
+  def destroy
      if @product.destroy
-       redirect_to product_path, notice: 'Product was successfully deleted.'
+       redirect_to products_path, notice: 'Product was successfully deleted.'
      end
   end
 
@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
   private
 
   def products_param
-    params.require('product').permit('name','price','description')
+    { name: params[:name], description: params[:description], price: params[:price] }
   end
 
   def set_product

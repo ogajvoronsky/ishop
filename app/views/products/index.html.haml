@@ -1,0 +1,15 @@
+%h1 Products
+
+%table.table
+  %th Name
+  %th Price
+  %tbody
+  - @products.each do |product|
+    %tr
+    %td= product.name
+    %td= product.price
+    %td= link_to 'Details', product
+    %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you shure?' }
+    %td= link_to  'Buy', add_cart_path(product_id: product.id), remote: true
+
+%p= link_to 'New', new_product_path
