@@ -1,0 +1,19 @@
+%h1= t '.current_cart'
+
+%h1=t('.header', count: @products.count)
+
+- if @products.count > 0 then
+
+  %table.table
+    %th=t '.name'
+    %th=t '.price'
+    %tbody
+    - @products.each do |product|
+      %tr
+      %td= product.name
+      %td= product.price
+
+<br>
+%p= link_to t('.back'), products_path
+%p= link_to t('.empty_cart'), cart_path, method: :delete
+

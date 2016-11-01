@@ -9,11 +9,14 @@ class CartsController < ApplicationController
     @cart = current_cart
     @product = Product.find(params[:product_id])
     @cart.products << @product
+
+    CartMailer.create_product_added(@product)
   end
 
-  def empty
+  def destroy
     @cart = current_cart
     @cart.destroy
+    redirect_to cart_path
   end
 
     private

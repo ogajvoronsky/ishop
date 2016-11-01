@@ -1,15 +1,16 @@
-%h1 Products
+%h1
+  = t '.products'
 
 %table.table
-  %th Name
-  %th Price
+  %th= Product.human_attribute_name('product')
+  %th= Product.human_attribute_name('price')
   %tbody
   - @products.each do |product|
     %tr
     %td= product.name
     %td= product.price
-    %td= link_to 'Details', product
-    %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you shure?' }
-    %td= link_to  'Buy', add_cart_path(product_id: product.id), remote: true
+    %td= link_to t('.details'), product
+    %td= link_to t('.destroy'), product, method: :delete, data: { confirm: t('.are_you_shure') }
+    %td= link_to t('.buy'), add_cart_path(product_id: product.id), remote: true
 
-%p= link_to 'New', new_product_path
+%p= link_to t('.new'), new_product_path

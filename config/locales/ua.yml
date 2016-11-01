@@ -1,0 +1,36 @@
+ua:
+  products:
+    index:
+      products: Товари
+      name_product: Назва товару
+      buy: Купити
+      are_you_shure: Ви впевнені?
+      details: Детально
+      destroy: Видалити
+      new: Новий товар
+    show:
+      product_caption: Перегляд товару
+      name: Назва
+      description: Опис
+      price: Ціна
+      back: Назад
+  carts:
+    add:
+      product_added: 'Товар додано до кошика'
+    show:
+      current_cart: Ваш поточний кошик
+      header:
+        zero: Ваш кошик порожній :(
+        one: Товар в кошику
+        other: Товари в кошику
+      name: Назва товару
+      price: Ціна
+      quantity: Кількість
+      back: Назад до переліку товарів
+      empty_cart: Очистити кошик
+
+  activerecord:
+      attributes:
+        product:
+          product: Товар
+          price: Ціна
