@@ -1,0 +1,11 @@
+%title= 'Ishop - Cursor learn project'
+%p= csrf_meta_tags
+%p= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+%p= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+%span= link_to 'EN', '?locale=en'
+%span= link_to 'UA', '?locale=ua'
+%span= link_to t('.products'), products_path
+%span= link_to t('.users'), users_path
+%span= link_to t('.cart'), cart_path(session[:cart_id])
+%span= link_to image_tag('cart.png', size: '40x40'), cart_path(session[:cart_id])
+%p= yield

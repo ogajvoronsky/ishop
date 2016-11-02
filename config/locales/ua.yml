@@ -1,4 +1,9 @@
 ua:
+  layouts:
+    application:
+      products: Товари
+      users: Користувачі
+      cart: Кошик
   products:
     index:
       products: Товари
@@ -14,6 +19,9 @@ ua:
       description: Опис
       price: Ціна
       back: Назад
+    new:
+      header: Додавання нового товару
+      save: Зберегти!
   carts:
     add:
       product_added: 'Товар додано до кошика'
@@ -34,3 +42,5 @@ ua:
         product:
           product: Товар
           price: Ціна
+          product_created: Товар успішно доданий
+          product_deleted: Товар успішно видалений

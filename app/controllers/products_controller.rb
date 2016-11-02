@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
 
   def create
     Product.create(products_param)
-    redirect_to products_path
+    redirect_to products_path, notice: t('activerecord.attributes.product.product_created')
   end
 
   def show
@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
 
   def destroy
      if @product.destroy
-       redirect_to products_path, notice: 'Product was successfully deleted.'
+       redirect_to products_path, notice: t('activerecord.attributes.product.product_deleted')
      end
   end
 

@@ -10,7 +10,7 @@ class CartsController < ApplicationController
     @product = Product.find(params[:product_id])
     @cart.products << @product
 
-    CartMailer.create_product_added(@product)
+    # CartMailer.create_product_added(@product)
   end
 
   def destroy

@@ -1,5 +1,10 @@
 
 en:
+  layouts:
+    application:
+      products: Products
+      users: Users
+      cart: Cart
   products:
     index:
       products: Products
@@ -15,6 +20,9 @@ en:
       description: Description
       price: Price
       back: Back
+    new:
+      header: Add new product
+      save: Save!
   carts:
     add:
       product_added: 'Product was added to cart'
@@ -33,5 +41,7 @@ en:
   activerecord:
     attributes:
       product:
+        product_created: Product was succesfully created
+        product_deleted: Product was succesfully deleted
         product: Product
         price: Price
