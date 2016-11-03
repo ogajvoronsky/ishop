@@ -1,5 +1,4 @@
 %h1= t('.header')
-  %p= label_tag t('products.show.name')
 = form_tag controller: 'products', action: :create, method: :post do
   %p= label_tag(t('products.show.name'))
   %p= text_field_tag :name

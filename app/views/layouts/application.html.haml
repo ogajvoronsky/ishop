@@ -1,7 +1,9 @@
 %title= 'Ishop - Cursor learn project'
-%p= csrf_meta_tags
-%p= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-%p= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+.head
+  %p= csrf_meta_tags
+  %p= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+  %p= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
 %span= link_to 'EN', '?locale=en'
 %span= link_to 'UA', '?locale=ua'
 %span= link_to t('.products'), products_path

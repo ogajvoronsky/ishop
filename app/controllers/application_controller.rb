@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_current_cart, :set_locale
+  add_flash_types :action_result
+
 
   def default_url_options
     { locale: I18n.locale }
