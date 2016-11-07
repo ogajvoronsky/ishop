@@ -1,0 +1,4 @@
+%h1= t('users.editing_user')
+= render 'form', user: @user
+= link_to t('users.show'), @user
+= link_to t('users.back'), users_path

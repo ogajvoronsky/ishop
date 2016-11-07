@@ -1,0 +1,6 @@
+%strong= t('users.name')
+%p= @user.name
+%strong= t('users.age')
+%p= @user.age
+%p= link_to t('users.edit'), edit_user_path(@user)
+%p= link_to t('users.users_list'), users_path

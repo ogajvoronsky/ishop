@@ -20,7 +20,6 @@ class CartsController < ApplicationController
   end
 
     private
-
     def current_cart
       Cart.find(session[:cart_id])
     end

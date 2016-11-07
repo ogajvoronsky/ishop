@@ -1,9 +1,10 @@
 -if action_result == 'product_added'
-  .alert-success
+  .alert-success= Product.human_attribute_name('product_created')
 -if action_result == 'product_deleted'
-  .alert-danger Delete
-%h1= t '.products'
+  .alert-danger= Product.human_attribute_name('product_deleted')
 
+.panel.panel-default
+  .panel-heading= t('.products')
 %table.table
   %th= Product.human_attribute_name('product')
   %th= Product.human_attribute_name('price')
@@ -12,8 +13,9 @@
     %tr
     %td= product.name
     %td= product.price
-    %td= link_to t('.details'), product
-    %td= link_to t('.destroy'), product, method: :delete, data: { confirm: t('.are_you_shure') }
-    %td= link_to t('.buy'), add_cart_path(product_id: product.id), remote: true
-
-%p= link_to t('.new'), new_product_path
+    %td
+      .btn-group
+        %button= link_to t('.details'), product, class: 'btn btn-success'
+        %button= link_to t('.destroy'), product, method: :delete, data: { confirm: t('.are_you_shure') }, class: 'btn btn-success'
+        %button= link_to t('.buy'), add_cart_path(product_id: product.id), remote: true, class: 'btn btn-success'
+%p= link_to t('.new'), new_product_path, class: 'btn btn-success'

@@ -1,0 +1,12 @@
+= form_for(user) do |f|
+  - if user.errors.any?
+    - user.errors.full_messages.each do |msg|
+      %li= msg
+
+  .field
+    = f.label(t('users.name'))
+    = f.text_field :name
+    = f.label(t('users.age'))
+    = f.number_field :age
+  .actions
+    = f.submit t('users.save'), class: 'btn btn-primary'

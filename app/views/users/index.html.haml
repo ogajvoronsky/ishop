@@ -1,0 +1,14 @@
+%h1= t('users.users_list')
+%table.table
+  %th= User.human_attribute_name('name')
+  %th= User.human_attribute_name('age')
+  %tbody
+  - @users.each do |user|
+    %tr
+    %td= user.name
+    %td= user.age
+    %td= link_to t('users.show'), user
+    %td= link_to t('users.edit'), edit_user_path(user)
+    %td= link_to t('users.delete'), user, method: :delete, data: { confirm: t('users.are_you_shure') }
+    %br
+%p= link_to t('users.new'), new_user_path

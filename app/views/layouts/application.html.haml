@@ -6,8 +6,15 @@
 
 %span= link_to 'EN', '?locale=en'
 %span= link_to 'UA', '?locale=ua'
-%span= link_to t('.products'), products_path
-%span= link_to t('.users'), users_path
-%span= link_to t('.cart'), cart_path(session[:cart_id])
-%span= link_to image_tag('cart.png', size: '40x40'), cart_path(session[:cart_id])
+
+%ul.nav.nav-pills
+  %li{:role => "presentation"}
+    %a= link_to t('.products'), products_path
+  %li{:role => "presentation"}
+    %a= link_to t('.users'),users_path
+  %li{:role => "presentation"}
+    %a= link_to t('.cart'), cart_path(session[:cart_id])
+  %li{:role => "presentation"}
+    %a= link_to image_tag('cart.png', size: '40x40'), cart_path(session[:cart_id])
+%p= notice
 %p= yield

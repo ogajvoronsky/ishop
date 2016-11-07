@@ -7,7 +7,7 @@ en:
       cart: Cart
   products:
     index:
-      products: Products
+      products: List of products
       name_product: Product name
       buy: Buy Item
       are_you_shure: Are you shure?
@@ -37,6 +37,19 @@ en:
       quantity: Quantity
       back: Back to product list
       empty_cart: Empty cart
+  users:
+    name: Name
+    age: Age
+    editing_user: Editing user
+    show: Show
+    edit: Edit
+    delete: Delete
+    back: Back
+    save: Save changes
+    users_list: Users
+    are_you_shure: Delete user?
+    new: New user
+    users_list: Users list
 
   activerecord:
     attributes:
@@ -45,3 +58,8 @@ en:
         product_deleted: Product was succesfully deleted
         product: Product
         price: Price
+
+      user:
+        name: Name
+        age:  Age
+

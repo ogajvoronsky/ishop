@@ -6,7 +6,7 @@ ua:
       cart: Кошик
   products:
     index:
-      products: Товари
+      products: Список товарів
       name_product: Назва товару
       buy: Купити
       are_you_shure: Ви впевнені?
@@ -36,7 +36,19 @@ ua:
       quantity: Кількість
       back: Назад до переліку товарів
       empty_cart: Очистити кошик
-
+  users:
+    name: Ім'я
+    age: Вік
+    editing_user: Редагування користувача
+    show: Перегляд
+    edit: Редагувати
+    delete: Видалити
+    back: Назад
+    save: Записати зміни
+    users_list: Користувачі
+    are_you_shure: Видалити користувача?
+    new: Додати користувача
+    users_list: Список користувачів
   activerecord:
       attributes:
         product:
@@ -44,3 +56,7 @@ ua:
           price: Ціна
           product_created: Товар успішно доданий
           product_deleted: Товар успішно видалений
+
+        user:
+          name: Ім'я
+          age:  Вік

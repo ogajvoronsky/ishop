@@ -1,12 +1,13 @@
 %h1= t('.header')
 = form_tag controller: 'products', action: :create, method: :post do
-  %p= label_tag(t('products.show.name'))
-  %p= text_field_tag :name
-  %br
-  %p= label_tag t('products.show.description')
-  %p= text_area_tag :description
-  %br
-  %p= label_tag t('products.show.price')
-  %p= number_field_tag :price
-  %br
-  %p= submit_tag t('.save'), class: 'btn btn-success'
+  .form-group
+    = label_tag t('products.show.name')
+    = text_field_tag :name, { class: => "form-control" }
+
+    = label_tag t('products.show.description')
+    = text_area_tag :description, { class: => "form-control" }
+
+    = label_tag t('products.show.price')
+    = number_field_tag :price, { class: => "form-control" }
+    %br
+    = submit_tag t('.save'), class: 'btn btn-success'
