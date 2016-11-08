@@ -1,6 +1,6 @@
 %p= csrf_meta_tags
 %h1= t('.header')
-%form.nifty_form{"accept-charset" => "UTF-8", :action => "/products#new", :method => "post"}
+%form{"accept-charset" => "UTF-8", :action => "/products?locale=#{session[:locale]}#new", :method => "post"}
   %label{:for => "name"} #{ t('products.show.name') }
   %input#name.form-control{:name => "name", :type => "text"}
   %label{:for => "description"} #{ t('products.show.description') }
@@ -8,4 +8,4 @@
   %label{:for => "price"} #{ t('products.show.price') }
   %input#price.form-control{:name => "price", :type => "number"}
   %input{:name => "authenticity_token", :type => "hidden", :value => session[:_csrf_token] }
-  %input.btn.btn-success{"data-disable-with" => t('.save'), :name => "commit", :type => "submit", :value => t('.save')}/
+  %input.btn.btn-success{"data-disable-with" => t('.save'), :name => "commit", :type => "submit", :value => t('.save')}
