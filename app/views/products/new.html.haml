@@ -7,5 +7,5 @@
   %textarea#description.form-control{:name => "description", :type => "text"}
   %label{:for => "price"} #{ t('products.show.price') }
   %input#price.form-control{:name => "price", :type => "number"}
-  %input{:name => "request_forgery_protection_token", :type => "hidden"} #{ Authtoken!!!!!  }
+  %input{:name => "authenticity_token", :type => "hidden", :value => session[:_csrf_token] }
   %input.btn.btn-success{"data-disable-with" => t('.save'), :name => "commit", :type => "submit", :value => t('.save')}/

@@ -2170,3 +2170,115 @@ puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
   Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
   Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.1ms)
   Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (47.9ms)
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 17:15:26 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.0ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.6ms)
+
+
+  
+SyntaxError (/home/galex/ishop/app/views/products/new.html.haml:10: syntax error, unexpected ':', expecting ')'
+...ity_token", :type => "hidden" :value => session[:_csrf_token...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:10: syntax error, unexpected ')', expecting tSTRING_DEND
+...alue => session[:_csrf_token] )}>\n  <input#{
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:11: syntax error, unexpected tSTRING_DEND, expecting '}'
+...es({"class"=>"btn btn-success"}, nil, "data-disable-with" =>...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:11: Can't assign to nil
+...lass"=>"btn btn-success"}, nil, "data-disable-with" => t('.s...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:11: syntax error, unexpected =>, expecting &. or :: or '[' or '.'
+..."}, nil, "data-disable-with" => t('.save'), :name => "commit...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:11: syntax error, unexpected ',', expecting tSTRING_DEND
+...ta-disable-with" => t('.save'), :name => "commit", :type => ...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:11: syntax error, unexpected ',', expecting tSTRING_DEND
+... t('.save'), :name => "commit", :type => "submit", :value =>...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:11: syntax error, unexpected ',', expecting tSTRING_DEND
+...=> "commit", :type => "submit", :value => t('.save'))}>\n</f...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:11: syntax error, unexpected ')', expecting tSTRING_DEND
+..."submit", :value => t('.save'))}>\n</form>\n", -1, false);::...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:11: unterminated regexp meets end of file
+/home/galex/ishop/app/views/products/new.html.haml:11: syntax error, unexpected end-of-input, expecting tSTRING_DEND):
+  
+app/views/products/new.html.haml:10: syntax error, unexpected ':', expecting ')'
+app/views/products/new.html.haml:10: syntax error, unexpected ')', expecting tSTRING_DEND
+app/views/products/new.html.haml:11: syntax error, unexpected tSTRING_DEND, expecting '}'
+app/views/products/new.html.haml:11: Can't assign to nil
+app/views/products/new.html.haml:11: syntax error, unexpected =>, expecting &. or :: or '[' or '.'
+app/views/products/new.html.haml:11: syntax error, unexpected ',', expecting tSTRING_DEND
+app/views/products/new.html.haml:11: syntax error, unexpected ',', expecting tSTRING_DEND
+app/views/products/new.html.haml:11: syntax error, unexpected ',', expecting tSTRING_DEND
+app/views/products/new.html.haml:11: syntax error, unexpected ')', expecting tSTRING_DEND
+app/views/products/new.html.haml:11: unterminated regexp meets end of file
+app/views/products/new.html.haml:11: syntax error, unexpected end-of-input, expecting tSTRING_DEND
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.1ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (50.8ms)
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 17:15:50 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.8ms)
+Completed 200 OK in 134ms (Views: 129.0ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/products" for 127.0.0.1 at 2016-11-08 17:17:23 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"name"=>"rerer", "description"=>"fsffsf", "price"=>"34", "authenticity_token"=>"cbJNC2gH4KaL6PRkUf5hyjvZ/Qql1xqfD2kIEXAuBPSP+JHKGbeHgE+8jQ9a5OqyGKjhxt6aLmi+HQ59XUteWA==", "commit"=>"Зберегти!"}
+  [1m[36mCart Load (7.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (144.8ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "rerer"], ["description", "fsffsf"], ["price", 34.0], ["created_at", 2016-11-08 15:17:23 UTC], ["updated_at", 2016-11-08 15:17:23 UTC]]
+  [1m[35m (35.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products?locale=en
+Completed 302 Found in 212ms (ActiveRecord: 188.1ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-08 17:17:23 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (46.0ms)
+Completed 200 OK in 271ms (Views: 252.2ms | ActiveRecord: 1.6ms)
+
+
+Started DELETE "/products/3?locale=en" for 127.0.0.1 at 2016-11-08 17:17:33 +0200
+Processing by ProductsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Edrvl5l48mJ4/5/uP8yJCTOVJESCfk/PM1eOPXxxeDPvkDNW6MiVRLyr5oU01gJxEOQ4iPkzeziCI4hRURQinw==", "locale"=>"en", "id"=>"3"}
+  [1m[36mCart Load (4.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProduct Load (14.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.4ms)[0m  [1m[31mDELETE FROM "carts_products" WHERE "carts_products"."product_id" = $1[0m  [["product_id", 3]]
+  [1m[35mSQL (4.4ms)[0m  [1m[31mDELETE FROM "products" WHERE "products"."id" = $1[0m  [["id", 3]]
+  [1m[35m (29.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products?locale=en
+Completed 302 Found in 222ms (ActiveRecord: 87.4ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-08 17:17:33 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (2.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (26.0ms)
+Completed 200 OK in 217ms (Views: 206.3ms | ActiveRecord: 3.2ms)
+
+
