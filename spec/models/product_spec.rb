@@ -17,17 +17,17 @@ describe Product do
 		end
   end
 
-  describe '.less_than_5' do
-    before do
-			@product = Product.create!(name: 'Test', price: 2)
-			@product2 = Product.create!(name: 'Test2', price: 4)
-			@product3 = Product.create!(name: 'Test2', price: 5)
-    end
+ # describe '.less_than_5' do
+ #   before do
+#			@product = Product.create!(name: 'Test', price: 2)
+#			@product2 = Product.create!(name: 'Test2', price: 4)
+#			@product3 = Product.create!(name: 'Test2', price: 5)
+#    end
 
 #    it 'Returns' do
 #			expect(Product.less_than_5).to eq [@product, @product2 ]
 #    end
-  end
+#  end
   describe '#description?' do
     let(:product) {Product.create!(name: 'Test', price: 2,
     description: 'Some description')}
