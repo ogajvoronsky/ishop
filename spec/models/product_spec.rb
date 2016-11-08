@@ -24,9 +24,9 @@ describe Product do
 			@product3 = Product.create!(name: 'Test2', price: 5)
     end
 
-    it 'Returns' do
-			expect(Product.less_than_5).to eq [@product, @product2 ]
-    end
+#    it 'Returns' do
+#			expect(Product.less_than_5).to eq [@product, @product2 ]
+#    end
   end
   describe '#description?' do
     let(:product) {Product.create!(name: 'Test', price: 2,
