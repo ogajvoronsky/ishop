@@ -8,6 +8,7 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
 gem 'rspec-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'autoprefixer-rails'
 gem 'pg'
 gem 'haml'
 # Use Puma as the app server

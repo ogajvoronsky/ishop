@@ -1,0 +1,2172 @@
+  [1m[35m (155.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (137.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1665200833839382980);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20161017162116)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (127.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "name" character varying, "age" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20161017162116"]]
+  [1m[35m (35.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAccounts (20161017164823)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (56.5ms)[0m  [1m[35mCREATE TABLE "accounts" ("id" serial primary key, "balance" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_b1e30bebc8"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (39.5ms)[0m  [1m[35mCREATE  INDEX  "index_accounts_on_user_id" ON "accounts"  ("user_id")[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20161017164823"]]
+  [1m[35m (29.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddEmailToUsers (20161017173637)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "users" ADD "email" character varying[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20161017173637"]]
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateProducts (20161019192718)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (121.3ms)[0m  [1m[35mCREATE TABLE "products" ("id" serial primary key, "name" character varying, "description" text, "price" float, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20161019192718"]]
+  [1m[35m (28.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCarts (20161019194937)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (76.5ms)[0m  [1m[35mCREATE TABLE "carts" ("id" serial primary key, "account_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_f37446ef7b"
+FOREIGN KEY ("account_id")
+  REFERENCES "accounts" ("id")
+)[0m
+  [1m[35m (40.5ms)[0m  [1m[35mCREATE  INDEX  "index_carts_on_account_id" ON "carts"  ("account_id")[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20161019194937"]]
+  [1m[35m (39.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCartProductJoinTable (20161021123033)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "carts_products" ("cart_id" integer NOT NULL, "product_id" integer NOT NULL)[0m
+  [1m[35m (50.0ms)[0m  [1m[35mCREATE  INDEX  "index_carts_products_on_cart_id_and_product_id" ON "carts_products"  ("cart_id", "product_id")[0m
+  [1m[35m (51.9ms)[0m  [1m[35mCREATE  INDEX  "index_carts_products_on_product_id_and_cart_id" ON "carts_products"  ("product_id", "cart_id")[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20161021123033"]]
+  [1m[35m (27.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-11-07 18:15:48 UTC], ["updated_at", 2016-11-07 18:15:48 UTC]]
+  [1m[35m (12.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(1665200833839382980)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (5.0ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'accounts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.6ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'carts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'carts_products'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'products'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+Started GET "/" for 127.0.0.1 at 2016-11-07 20:27:28 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (11.9ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", 2016-11-07 18:27:29 UTC], ["updated_at", 2016-11-07 18:27:29 UTC]]
+  [1m[35m (17.3ms)[0m  [1m[35mCOMMIT[0m
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (65.9ms)
+Completed 200 OK in 9207ms (Views: 8847.5ms | ActiveRecord: 69.5ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-07 20:27:43 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (9.1ms)
+Completed 200 OK in 194ms (Views: 131.7ms | ActiveRecord: 9.3ms)
+
+
+Started GET "/users?locale=en" for 127.0.0.1 at 2016-11-07 20:27:53 +0200
+Processing by UsersController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (3.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (17.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.haml within layouts/application (34.3ms)
+Completed 200 OK in 212ms (Views: 149.5ms | ActiveRecord: 24.0ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-07 20:27:54 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (25.3ms)
+Completed 200 OK in 169ms (Views: 162.1ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/cart.1?locale=en" for 127.0.0.1 at 2016-11-07 20:27:56 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (160.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 1]]
+  Rendered carts/show.html.haml within layouts/application (261.8ms)
+Completed 200 OK in 572ms (Views: 277.7ms | ActiveRecord: 162.0ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-07 20:27:57 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (4.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (15.1ms)
+Completed 200 OK in 176ms (Views: 162.9ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:28:00 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.8ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (19.4ms)
+Completed 200 OK in 167ms (Views: 153.9ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-07 20:28:04 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (5.8ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (44.8ms)
+Completed 200 OK in 323ms (Views: 303.0ms | ActiveRecord: 11.2ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:28:06 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (19.7ms)
+Completed 200 OK in 296ms (Views: 278.1ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:47:24 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (31.3ms)
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 20:47:26 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (2.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.9ms)
+Completed 200 OK in 18220ms (Views: 18125.1ms | ActiveRecord: 9.5ms)
+
+
+Completed 200 OK in 19956ms (Views: 19733.7ms | ActiveRecord: 11.9ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 20:48:29 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.1ms)
+Completed 200 OK in 133ms (Views: 125.5ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/products?locale=ua&method=post" for 127.0.0.1 at 2016-11-07 20:48:51 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4w/nTEb70Dn+dOcDlD3HVB1a0rrs07HGokZnHY4SCIYdRTuNN0u3HzognmifJ0wsPivOdpeehTETMmFxo3dSKg==", "name"=>"HIFI", "description"=>"Car", "price"=>"234", "commit"=>"Зберегти!", "locale"=>"ua", "method"=>"post"}
+  [1m[36mCart Load (1.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "HIFI"], ["description", "Car"], ["price", 234.0], ["created_at", 2016-11-07 18:48:51 UTC], ["updated_at", 2016-11-07 18:48:51 UTC]]
+  [1m[35m (77.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products?locale=ua
+Completed 302 Found in 92ms (ActiveRecord: 81.0ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:48:51 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (34.1ms)
+Completed 200 OK in 289ms (Views: 282.7ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:49:02 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (4.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (18.2ms)
+Completed 200 OK in 143ms (Views: 132.6ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/products/1?locale=ua" for 127.0.0.1 at 2016-11-07 20:49:13 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"locale"=>"ua", "id"=>"1"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (2.8ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/show.html.haml within layouts/application
+  Rendered products/show.html.haml within layouts/application (11.4ms)
+Completed 200 OK in 206ms (Views: 168.8ms | ActiveRecord: 6.3ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 20:49:47 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (18.3ms)
+Completed 200 OK in 170ms (Views: 164.6ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/products?locale=ua&method=post" for 127.0.0.1 at 2016-11-07 20:50:00 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DWSlf7S3Rn69Tk/F7Z5KbB8PhZb51KJKBmPvvOHBhkPzLnm+xQchWHkaNq7mhMEUPH6ZWoKZlr23F+nQzKTc7w==", "name"=>"Macbook", "description"=>"dfdfbfbfbsfgb", "price"=>"2000", "commit"=>"Зберегти!", "locale"=>"ua", "method"=>"post"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.7ms)[0m  [1m[32mINSERT INTO "products" ("name", "description", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Macbook"], ["description", "dfdfbfbfbsfgb"], ["price", 2000.0], ["created_at", 2016-11-07 18:50:00 UTC], ["updated_at", 2016-11-07 18:50:00 UTC]]
+  [1m[35m (59.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products?locale=ua
+Completed 302 Found in 81ms (ActiveRecord: 63.4ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:50:01 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (17.6ms)
+Completed 200 OK in 236ms (Views: 230.3ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:50:06 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (15.2ms)
+Completed 200 OK in 185ms (Views: 179.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-07 20:50:15 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (2.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (29.9ms)
+Completed 200 OK in 178ms (Views: 167.0ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:50:17 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (63.0ms)
+Completed 200 OK in 334ms (Views: 323.5ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 20:50:26 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (15.2ms)
+Completed 200 OK in 154ms (Views: 127.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=1" for 127.0.0.1 at 2016-11-07 20:52:04 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"1"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 1], ["product_id", 1]]
+  [1m[35m (32.6ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.9ms)
+Completed 200 OK in 146ms (Views: 9.7ms | ActiveRecord: 38.8ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=1" for 127.0.0.1 at 2016-11-07 20:52:04 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"1"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 1], ["product_id", 1]]
+  [1m[35m (67.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.8ms)
+Completed 200 OK in 99ms (Views: 10.7ms | ActiveRecord: 69.7ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=1" for 127.0.0.1 at 2016-11-07 20:52:04 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"1"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 1], ["product_id", 1]]
+  [1m[35m (33.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.6ms)
+Completed 200 OK in 73ms (Views: 9.4ms | ActiveRecord: 36.5ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=1" for 127.0.0.1 at 2016-11-07 20:52:04 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"1"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 1], ["product_id", 1]]
+  [1m[35m (43.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.5ms)
+Completed 200 OK in 77ms (Views: 8.9ms | ActiveRecord: 45.9ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=1" for 127.0.0.1 at 2016-11-07 20:52:04 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"1"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (7.1ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 1], ["product_id", 1]]
+  [1m[35m (31.6ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.8ms)
+Completed 200 OK in 82ms (Views: 23.0ms | ActiveRecord: 40.2ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=1" for 127.0.0.1 at 2016-11-07 20:52:04 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"1"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (2.9ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 1], ["product_id", 1]]
+  [1m[35m (10.7ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.8ms)
+Completed 200 OK in 67ms (Views: 11.8ms | ActiveRecord: 15.5ms)
+
+
+Started GET "/cart.1?locale=ua" for 127.0.0.1 at 2016-11-07 20:52:14 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 1]]
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 1]]
+  Rendered carts/show.html.haml within layouts/application (57.0ms)
+Completed 200 OK in 193ms (Views: 177.8ms | ActiveRecord: 3.0ms)
+
+
+Started DELETE "/cart?locale=ua" for 127.0.0.1 at 2016-11-07 20:52:27 +0200
+Processing by CartsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"6nrkMEl0HF8UufMNtPw0agwWKbmhzLwZgxXpz9nL5yoUMDjxOMR7edDtima/5r8SL2c1ddqBiO4yYe+j9K69hg==", "locale"=>"ua"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[31mDELETE FROM "carts_products" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[31mDELETE FROM "carts" WHERE "carts"."id" = $1[0m  [["id", 1]]
+  [1m[35m (31.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/cart?locale=ua
+Completed 302 Found in 46ms (ActiveRecord: 34.2ms)
+
+
+Started GET "/cart?locale=ua" for 127.0.0.1 at 2016-11-07 20:52:27 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", 2016-11-07 18:52:27 UTC], ["updated_at", 2016-11-07 18:52:27 UTC]]
+  [1m[35m (74.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  Rendered carts/show.html.haml within layouts/application (11.4ms)
+Completed 200 OK in 282ms (Views: 193.6ms | ActiveRecord: 78.3ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:52:31 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (7.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (23.2ms)
+Completed 200 OK in 166ms (Views: 148.3ms | ActiveRecord: 7.7ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=2" for 127.0.0.1 at 2016-11-07 20:52:33 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"2"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 2], ["product_id", 2]]
+  [1m[35m (12.9ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.8ms)
+Completed 200 OK in 52ms (Views: 9.5ms | ActiveRecord: 15.6ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=2" for 127.0.0.1 at 2016-11-07 20:52:33 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"2"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProduct Load (2.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 2], ["product_id", 2]]
+  [1m[35m (7.1ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.8ms)
+Completed 200 OK in 47ms (Views: 10.6ms | ActiveRecord: 11.1ms)
+
+
+Started GET "/cart.2?locale=ua" for 127.0.0.1 at 2016-11-07 20:52:40 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  Rendered carts/show.html.haml within layouts/application (16.7ms)
+Completed 200 OK in 183ms (Views: 167.8ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/cart.2?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:13 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  Rendered carts/show.html.haml within layouts/application (16.8ms)
+Completed 200 OK in 181ms (Views: 165.9ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/users?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:15 +0200
+Processing by UsersController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.haml within layouts/application (13.3ms)
+Completed 200 OK in 150ms (Views: 108.8ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/cart.2?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:17 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  Rendered carts/show.html.haml within layouts/application (15.6ms)
+Completed 200 OK in 145ms (Views: 127.8ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/users?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:21 +0200
+Processing by UsersController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (6.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.haml within layouts/application (12.8ms)
+Completed 200 OK in 139ms (Views: 125.9ms | ActiveRecord: 7.2ms)
+
+
+Started GET "/cart.2?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:22 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  Rendered carts/show.html.haml within layouts/application (14.8ms)
+Completed 200 OK in 149ms (Views: 134.3ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:31 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (24.8ms)
+Completed 200 OK in 151ms (Views: 141.0ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/cart.2?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:32 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  Rendered carts/show.html.haml within layouts/application (18.7ms)
+Completed 200 OK in 169ms (Views: 153.0ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:36 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (26.9ms)
+Completed 200 OK in 153ms (Views: 145.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/cart.2?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:37 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  Rendered carts/show.html.haml within layouts/application (14.8ms)
+Completed 200 OK in 154ms (Views: 136.9ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:39 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (3.8ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (25.1ms)
+Completed 200 OK in 154ms (Views: 144.2ms | ActiveRecord: 5.6ms)
+
+
+Started GET "/cart.2?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:41 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  Rendered carts/show.html.haml within layouts/application (14.6ms)
+Completed 200 OK in 148ms (Views: 130.4ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:44 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (41.1ms)
+Completed 200 OK in 160ms (Views: 148.2ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/users?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:46 +0200
+Processing by UsersController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.haml within layouts/application (9.7ms)
+Completed 200 OK in 131ms (Views: 116.7ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:48 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (5.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (2.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (35.3ms)
+Completed 200 OK in 266ms (Views: 236.7ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/cart.2?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:50 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (3.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  Rendered carts/show.html.haml within layouts/application (14.8ms)
+Completed 200 OK in 149ms (Views: 127.8ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/cart.2?locale=ua" for 127.0.0.1 at 2016-11-07 20:53:54 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 2]]
+  Rendered carts/show.html.haml within layouts/application (13.9ms)
+Completed 200 OK in 140ms (Views: 120.7ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-07 21:09:52 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (5.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (17.8ms)
+Completed 200 OK in 253ms (Views: 236.4ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 21:09:54 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (5.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (9.1ms)
+Completed 200 OK in 178ms (Views: 143.0ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 21:12:29 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.6ms)
+Completed 200 OK in 149ms (Views: 135.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 21:13:02 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (3.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.3ms)
+Completed 200 OK in 138ms (Views: 129.0ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 21:16:05 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (3.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (6.2ms)
+Completed 200 OK in 144ms (Views: 130.6ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 21:20:25 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (3.1ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.8ms)
+
+
+  
+SyntaxError (/home/galex/ishop/app/views/products/new.html.haml:8: syntax error, unexpected ':', expecting ')'
+...(( text_area_tag :description :class form-control
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:8: class/module name must be CONSTANT
+...a_tag :description :class form-control
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:8: class definition in method body
+...a_tag :description :class form-control
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:11: syntax error, unexpected '}', expecting keyword_end
+));}\n  #{_hamlout.format_script_...
+    ^
+/home/galex/ishop/app/views/products/new.html.haml:12: syntax error, unexpected $undefined
+));}\n  <br>\n  #{
+             ^
+/home/galex/ishop/app/views/products/new.html.haml:14: syntax error, unexpected '}', expecting keyword_end
+));}\n", 0, false);end;_hamlout.b...
+    ^
+/home/galex/ishop/app/views/products/new.html.haml:14: syntax error, unexpected $undefined, expecting keyword_end
+...aml_temp);_hamlout.push_text("\n</form-group>\n", -1, false)...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:14: unterminated regexp meets end of file
+/home/galex/ishop/app/views/products/new.html.haml:14: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/views/products/new.html.haml:8: syntax error, unexpected ':', expecting ')'
+app/views/products/new.html.haml:8: class/module name must be CONSTANT
+app/views/products/new.html.haml:8: class definition in method body
+app/views/products/new.html.haml:11: syntax error, unexpected '}', expecting keyword_end
+app/views/products/new.html.haml:12: syntax error, unexpected $undefined
+app/views/products/new.html.haml:14: syntax error, unexpected '}', expecting keyword_end
+app/views/products/new.html.haml:14: syntax error, unexpected $undefined, expecting keyword_end
+app/views/products/new.html.haml:14: unterminated regexp meets end of file
+app/views/products/new.html.haml:14: syntax error, unexpected end-of-input, expecting keyword_end
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (8.2ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.3ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (61.2ms)
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 21:22:14 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (13.5ms)
+Completed 200 OK in 136ms (Views: 128.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 21:53:30 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (11.3ms)
+Completed 500 Internal Server Error in 437ms (ActiveRecord: 76.3ms)
+
+
+  
+SyntaxError (/home/galex/ishop/app/views/products/new.html.haml:11: syntax error, unexpected '=', expecting ')'
+...=>"form-control"}, nil, :name ="price", :type => "number")}>...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:11: syntax error, unexpected ',', expecting tSTRING_DEND
+...control"}, nil, :name ="price", :type => "number")}>\n  </di...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:11: syntax error, unexpected ')', expecting tSTRING_DEND
+...me ="price", :type => "number")}>\n  </div>\n  <div class='f...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: unknown regexp options - dv
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected $undefined
+...lue => t('.save'))}>\n  </div>\n</form>\n", -2, false);::Ham...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: unterminated regexp meets end of file
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected end-of-input, expecting tSTRING_DEND):
+  
+app/views/products/new.html.haml:11: syntax error, unexpected '=', expecting ')'
+app/views/products/new.html.haml:11: syntax error, unexpected ',', expecting tSTRING_DEND
+app/views/products/new.html.haml:11: syntax error, unexpected ')', expecting tSTRING_DEND
+app/views/products/new.html.haml:13: unknown regexp options - dv
+app/views/products/new.html.haml:13: syntax error, unexpected $undefined
+app/views/products/new.html.haml:13: unterminated regexp meets end of file
+app/views/products/new.html.haml:13: syntax error, unexpected end-of-input, expecting tSTRING_DEND
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (14.7ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.1ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (108.4ms)
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 21:54:32 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (6.6ms)
+Completed 200 OK in 1288ms (Views: 1282.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 21:57:57 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (8.4ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 1.9ms)
+
+
+  
+SyntaxError (/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected ':', expecting ')'
+...butes({}, nil, :for => "name" :name => "name", :value => t('...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected ',', expecting tSTRING_DEND
+...:for => "name" :name => "name", :value => t('products.show.n...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected ')', expecting tSTRING_DEND
+...lue => t('products.show.name'))}></label>\n    <input class=...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: unknown regexp options - dv
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+...='name' type='text'>\n  </div>\n  <div class='form-group'>\n...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+...'text'>\n  </div>\n  <div class='form-group'>\n    <label fo...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+...v>\n  <div class='form-group'>\n    <label for='description'...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected keyword_for, expecting keyword_do or '{' or '('
+...s='form-group'>\n    <label for='description'>=t('products.s...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: unknown regexp options - dv
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+...cription' type='text'>  </div>\n  <div class='form-group'>\n...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+...e='text'>  </div>\n  <div class='form-group'>\n    <label fo...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+...v>\n  <div class='form-group'>\n    <label for='price'>= t('...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected keyword_for, expecting keyword_do or '{' or '('
+...s='form-group'>\n    <label for='price'>= t('products.show.p...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: unknown regexp options - dv
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+...rice' type='number'>\n  </div>\n  <div class='form-group'>\n...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+...umber'>\n  </div>\n  <div class='form-group'>\n    <input#{
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+...v>\n  <div class='form-group'>\n    <input#{
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected tSTRING_DEND, expecting '}'
+...es({"class"=>"btn btn-success"}, nil, "data-disable-with" =>...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: Can't assign to nil
+...lass"=>"btn btn-success"}, nil, "data-disable-with" => t('.s...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected =>, expecting &. or :: or '[' or '.'
+..."}, nil, "data-disable-with" => t('.save'), :name => "commit...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected ',', expecting tSTRING_DEND
+...ta-disable-with" => t('.save'), :name => "commit", :type => ...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected ',', expecting tSTRING_DEND
+... t('.save'), :name => "commit", :type => "submit", :value =>...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected ',', expecting tSTRING_DEND
+...=> "commit", :type => "submit", :value => t('.save'))}>\n  <...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected ')', expecting tSTRING_DEND
+..."submit", :value => t('.save'))}>\n  </div>\n</form>\n", -2,...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: unknown regexp options - fr
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected $undefined
+...'.save'))}>\n  </div>\n</form>\n", -2, false);::Haml::Util.h...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: unterminated string meets end of file
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected end-of-input, expecting tSTRING_DEND):
+  
+app/views/products/new.html.haml:4: syntax error, unexpected ':', expecting ')'
+app/views/products/new.html.haml:4: syntax error, unexpected ',', expecting tSTRING_DEND
+app/views/products/new.html.haml:4: syntax error, unexpected ')', expecting tSTRING_DEND
+app/views/products/new.html.haml:4: unknown regexp options - dv
+app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+app/views/products/new.html.haml:4: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+app/views/products/new.html.haml:4: syntax error, unexpected keyword_for, expecting keyword_do or '{' or '('
+app/views/products/new.html.haml:4: unknown regexp options - dv
+app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+app/views/products/new.html.haml:4: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+app/views/products/new.html.haml:4: syntax error, unexpected keyword_for, expecting keyword_do or '{' or '('
+app/views/products/new.html.haml:4: unknown regexp options - dv
+app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+app/views/products/new.html.haml:4: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+app/views/products/new.html.haml:13: syntax error, unexpected tSTRING_DEND, expecting '}'
+app/views/products/new.html.haml:13: Can't assign to nil
+app/views/products/new.html.haml:13: syntax error, unexpected =>, expecting &. or :: or '[' or '.'
+app/views/products/new.html.haml:13: syntax error, unexpected ',', expecting tSTRING_DEND
+app/views/products/new.html.haml:13: syntax error, unexpected ',', expecting tSTRING_DEND
+app/views/products/new.html.haml:13: syntax error, unexpected ',', expecting tSTRING_DEND
+app/views/products/new.html.haml:13: syntax error, unexpected ')', expecting tSTRING_DEND
+app/views/products/new.html.haml:13: unknown regexp options - fr
+app/views/products/new.html.haml:13: syntax error, unexpected $undefined
+app/views/products/new.html.haml:13: unterminated string meets end of file
+app/views/products/new.html.haml:13: syntax error, unexpected end-of-input, expecting tSTRING_DEND
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (8.9ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (56.5ms)
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 21:58:21 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (3.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.2ms)
+Completed 200 OK in 153ms (Views: 142.9ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 21:59:40 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (6.9ms)
+Completed 200 OK in 169ms (Views: 162.6ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 21:59:52 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (9.0ms)
+Completed 200 OK in 156ms (Views: 147.4ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 22:00:18 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (8.5ms)
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 0.7ms)
+
+
+  
+SyntaxError (/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected ')', expecting =>
+...name", t('products.show.name'))}></label>\n    <input class=...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: unknown regexp options - dv
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+...='name' type='text'>\n  </div>\n  <div class='form-group'>\n...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+...'text'>\n  </div>\n  <div class='form-group'>\n    <label fo...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+...v>\n  <div class='form-group'>\n    <label for='description'...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected keyword_for, expecting keyword_do or '{' or '('
+...s='form-group'>\n    <label for='description'>=t('products.s...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: unknown regexp options - dv
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+...cription' type='text'>  </div>\n  <div class='form-group'>\n...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+...e='text'>  </div>\n  <div class='form-group'>\n    <label fo...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+...v>\n  <div class='form-group'>\n    <label for='price'>= t('...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected keyword_for, expecting keyword_do or '{' or '('
+...s='form-group'>\n    <label for='price'>= t('products.show.p...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: unknown regexp options - dv
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+...rice' type='number'>\n  </div>\n  <div class='form-group'>\n...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+...umber'>\n  </div>\n  <div class='form-group'>\n    <input#{
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+...v>\n  <div class='form-group'>\n    <input#{
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected tSTRING_DEND, expecting '}'
+...es({"class"=>"btn btn-success"}, nil, "data-disable-with" =>...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: Can't assign to nil
+...lass"=>"btn btn-success"}, nil, "data-disable-with" => t('.s...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected =>, expecting &. or :: or '[' or '.'
+..."}, nil, "data-disable-with" => t('.save'), :name => "commit...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected ',', expecting tSTRING_DEND
+...ta-disable-with" => t('.save'), :name => "commit", :type => ...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected ',', expecting tSTRING_DEND
+... t('.save'), :name => "commit", :type => "submit", :value =>...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected ',', expecting tSTRING_DEND
+...=> "commit", :type => "submit", :value => t('.save'))}>\n  <...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected ')', expecting tSTRING_DEND
+..."submit", :value => t('.save'))}>\n  </div>\n</form>\n", -2,...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: unknown regexp options - fr
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected $undefined
+...'.save'))}>\n  </div>\n</form>\n", -2, false);::Haml::Util.h...
+...                               ^
+/home/galex/ishop/app/views/products/new.html.haml:13: unterminated string meets end of file
+/home/galex/ishop/app/views/products/new.html.haml:13: syntax error, unexpected end-of-input, expecting tSTRING_DEND):
+  
+app/views/products/new.html.haml:4: syntax error, unexpected ')', expecting =>
+app/views/products/new.html.haml:4: unknown regexp options - dv
+app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+app/views/products/new.html.haml:4: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+app/views/products/new.html.haml:4: syntax error, unexpected keyword_for, expecting keyword_do or '{' or '('
+app/views/products/new.html.haml:4: unknown regexp options - dv
+app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+app/views/products/new.html.haml:4: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+app/views/products/new.html.haml:4: syntax error, unexpected keyword_for, expecting keyword_do or '{' or '('
+app/views/products/new.html.haml:4: unknown regexp options - dv
+app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+app/views/products/new.html.haml:4: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+app/views/products/new.html.haml:4: syntax error, unexpected $undefined
+app/views/products/new.html.haml:13: syntax error, unexpected tSTRING_DEND, expecting '}'
+app/views/products/new.html.haml:13: Can't assign to nil
+app/views/products/new.html.haml:13: syntax error, unexpected =>, expecting &. or :: or '[' or '.'
+app/views/products/new.html.haml:13: syntax error, unexpected ',', expecting tSTRING_DEND
+app/views/products/new.html.haml:13: syntax error, unexpected ',', expecting tSTRING_DEND
+app/views/products/new.html.haml:13: syntax error, unexpected ',', expecting tSTRING_DEND
+app/views/products/new.html.haml:13: syntax error, unexpected ')', expecting tSTRING_DEND
+app/views/products/new.html.haml:13: unknown regexp options - fr
+app/views/products/new.html.haml:13: syntax error, unexpected $undefined
+app/views/products/new.html.haml:13: unterminated string meets end of file
+app/views/products/new.html.haml:13: syntax error, unexpected end-of-input, expecting tSTRING_DEND
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (8.0ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.1ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (53.9ms)
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 22:03:13 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (16.9ms)
+Completed 200 OK in 175ms (Views: 169.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 22:03:27 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (5.6ms)
+Completed 200 OK in 156ms (Views: 147.6ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-07 22:04:01 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (8.0ms)
+Completed 200 OK in 143ms (Views: 136.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:29:28 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (410.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (200.0ms)
+Completed 200 OK in 2763ms (Views: 2181.8ms | ActiveRecord: 410.4ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:30:13 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (96.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (38.2ms)
+Completed 200 OK in 1239ms (Views: 1093.8ms | ActiveRecord: 96.0ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:31:22 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (155.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (48.2ms)
+Completed 200 OK in 1053ms (Views: 893.6ms | ActiveRecord: 155.1ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:31:34 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (19.1ms)
+Completed 200 OK in 188ms (Views: 182.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:31:58 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (496.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (39.7ms)
+Completed 200 OK in 706ms (Views: 205.1ms | ActiveRecord: 496.0ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:33:46 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (6.2ms)
+Completed 200 OK in 153ms (Views: 146.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:33:48 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (5.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.4ms)
+Completed 200 OK in 137ms (Views: 121.4ms | ActiveRecord: 5.6ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:34:13 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (9.1ms)
+Completed 200 OK in 324ms (Views: 311.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:34:21 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (10.3ms)
+Completed 200 OK in 139ms (Views: 132.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:34:49 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (31.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (3.7ms)
+Completed 200 OK in 177ms (Views: 142.0ms | ActiveRecord: 31.3ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:35:19 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (67.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (5.7ms)
+Completed 200 OK in 205ms (Views: 133.4ms | ActiveRecord: 67.4ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:35:49 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (9.2ms)
+Completed 200 OK in 143ms (Views: 137.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:37:12 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (4.6ms)
+Completed 200 OK in 164ms (Views: 136.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:37:36 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (11.4ms)
+Completed 200 OK in 142ms (Views: 136.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:38:37 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (5.8ms)
+Completed 200 OK in 122ms (Views: 117.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:39:00 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (6.9ms)
+Completed 200 OK in 140ms (Views: 134.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:40:22 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.5ms)
+Completed 200 OK in 136ms (Views: 127.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users?locale=ua" for 127.0.0.1 at 2016-11-08 14:42:33 +0200
+Processing by UsersController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (90.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.haml within layouts/application (275.5ms)
+Completed 200 OK in 687ms (Views: 259.5ms | ActiveRecord: 268.0ms)
+
+
+Started GET "/users/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:42:35 +0200
+Processing by UsersController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (2.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/new.html.haml within layouts/application
+  Rendered users/_form.html.haml (125.2ms)
+  Rendered users/new.html.haml within layouts/application (192.8ms)
+Completed 200 OK in 612ms (Views: 357.1ms | ActiveRecord: 191.4ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-08 14:46:30 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (2.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (32.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (122.9ms)
+Completed 200 OK in 253ms (Views: 198.0ms | ActiveRecord: 34.6ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:46:32 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (4.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (22.1ms)
+Completed 200 OK in 340ms (Views: 327.7ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:47:01 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.7ms)
+Completed 200 OK in 125ms (Views: 120.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/products/new?name=rert&description=dfvbdfbgd&price=44&commit=%D0%97%D0%B1%D0%B5%D1%80%D0%B5%D0%B3%D1%82%D0%B8%21" for 127.0.0.1 at 2016-11-08 14:47:13 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"name"=>"rert", "description"=>"dfvbdfbgd", "price"=>"44", "commit"=>"Зберегти!"}
+  [1m[36mCart Load (2.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (34.6ms)
+Completed 200 OK in 223ms (Views: 209.5ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-08 14:47:27 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (111.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (121.7ms)
+Completed 200 OK in 244ms (Views: 126.9ms | ActiveRecord: 112.3ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 14:47:29 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (13.5ms)
+Completed 200 OK in 144ms (Views: 125.8ms | ActiveRecord: 12.0ms)
+
+
+Started GET "/products/new?name=&description=&price=&commit=Save%21" for 127.0.0.1 at 2016-11-08 14:47:32 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"name"=>"", "description"=>"", "price"=>"", "commit"=>"Save!"}
+  [1m[36mCart Load (19.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.3ms)
+Completed 200 OK in 143ms (Views: 112.3ms | ActiveRecord: 26.0ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-08 14:47:47 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (7.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (76.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (90.4ms)
+Completed 200 OK in 211ms (Views: 123.8ms | ActiveRecord: 83.9ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 14:47:49 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (8.7ms)
+Completed 200 OK in 148ms (Views: 143.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:47:55 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (9.8ms)
+Completed 200 OK in 139ms (Views: 134.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products/new?name=erf&description=re&price=4&commit=%D0%97%D0%B1%D0%B5%D1%80%D0%B5%D0%B3%D1%82%D0%B8%21" for 127.0.0.1 at 2016-11-08 14:48:02 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"name"=>"erf", "description"=>"re", "price"=>"4", "commit"=>"Зберегти!"}
+  [1m[36mCart Load (2.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (10.8ms)
+Completed 200 OK in 158ms (Views: 147.6ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/users?locale=en" for 127.0.0.1 at 2016-11-08 14:48:26 +0200
+Processing by UsersController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (2.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.haml within layouts/application (9.0ms)
+Completed 200 OK in 181ms (Views: 173.4ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/users/new?locale=en" for 127.0.0.1 at 2016-11-08 14:48:28 +0200
+Processing by UsersController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/new.html.haml within layouts/application
+  Rendered users/_form.html.haml (23.9ms)
+  Rendered users/new.html.haml within layouts/application (29.5ms)
+Completed 200 OK in 174ms (Views: 154.6ms | ActiveRecord: 13.7ms)
+
+
+Started POST "/users?locale=en" for 127.0.0.1 at 2016-11-08 14:48:36 +0200
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"F+vef3ewjx3lIZFAkR4GoYCM7HaXLVNQJlS10IuVmOrpoQK+BgDoOyF16CuaBI3Zo/3wuuxgZ6eXILO8pvDCRg==", "user"=>{"name"=>"rwertw", "age"=>"44"}, "commit"=>"Save changes", "locale"=>"en"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (276.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "rwertw"], ["age", 44], ["created_at", 2016-11-08 12:48:36 UTC], ["updated_at", 2016-11-08 12:48:36 UTC]]
+  [1m[35mSQL (58.9ms)[0m  [1m[32mINSERT INTO "accounts" ("balance", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["balance", 0], ["user_id", 1], ["created_at", 2016-11-08 12:48:37 UTC], ["updated_at", 2016-11-08 12:48:37 UTC]]
+  [1m[36mAccount Load (0.7ms)[0m  [1m[34mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "accounts" SET "balance" = $1, "updated_at" = $2 WHERE "accounts"."id" = $3[0m  [["balance", 100], ["updated_at", 2016-11-08 12:48:37 UTC], ["id", 1]]
+  [1m[35m (64.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users/1?locale=en
+Completed 302 Found in 1042ms (ActiveRecord: 446.6ms)
+
+
+Started GET "/users/1?locale=en" for 127.0.0.1 at 2016-11-08 14:48:37 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"locale"=>"en", "id"=>"1"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (12.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (3.4ms)
+Completed 200 OK in 164ms (Views: 119.0ms | ActiveRecord: 13.1ms)
+
+
+Started GET "/users?locale=en" for 127.0.0.1 at 2016-11-08 14:48:44 +0200
+Processing by UsersController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (2.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.haml within layouts/application (15.4ms)
+Completed 200 OK in 144ms (Views: 132.7ms | ActiveRecord: 3.3ms)
+
+
+Started DELETE "/users/1?locale=en" for 127.0.0.1 at 2016-11-08 14:48:53 +0200
+Processing by UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"hpXtmh5ufUDvPBQy34M8m5IAZl/E2uNq6jPNUn9O++N43zFbb94aZitobVnUmbfjsXF6k7+X151bR8s+UiuhTw==", "locale"=>"en", "id"=>"1"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (12.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAccount Load (0.7ms)[0m  [1m[34mSELECT  "accounts".* FROM "accounts" WHERE "accounts"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (19.5ms)[0m  [1m[31mDELETE FROM "accounts" WHERE "accounts"."id" = $1[0m  [["id", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[35m (22.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users?locale=en
+Completed 302 Found in 72ms (ActiveRecord: 57.5ms)
+
+
+Started GET "/users?locale=en" for 127.0.0.1 at 2016-11-08 14:48:53 +0200
+Processing by UsersController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (14.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.haml within layouts/application (19.3ms)
+Completed 200 OK in 134ms (Views: 115.5ms | ActiveRecord: 14.7ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-08 14:48:57 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (30.7ms)
+Completed 200 OK in 144ms (Views: 139.0ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 14:49:00 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (27.0ms)
+Completed 200 OK in 146ms (Views: 142.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:49:11 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (8.4ms)
+Completed 200 OK in 131ms (Views: 125.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 14:49:15 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (23.7ms)
+Completed 200 OK in 303ms (Views: 298.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:49:17 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (24.8ms)
+Completed 200 OK in 300ms (Views: 290.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users?locale=ua" for 127.0.0.1 at 2016-11-08 14:56:05 +0200
+Processing by UsersController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.haml within layouts/application (9.5ms)
+Completed 200 OK in 113ms (Views: 106.9ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/users?locale=ua" for 127.0.0.1 at 2016-11-08 14:56:09 +0200
+Processing by UsersController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (2.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (4.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.haml within layouts/application (10.7ms)
+Completed 200 OK in 172ms (Views: 161.8ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/users/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:56:16 +0200
+Processing by UsersController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/new.html.haml within layouts/application
+  Rendered users/_form.html.haml (21.2ms)
+  Rendered users/new.html.haml within layouts/application (40.7ms)
+Completed 200 OK in 143ms (Views: 139.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-08 14:59:30 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (18.5ms)
+Completed 200 OK in 150ms (Views: 142.4ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 14:59:32 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (9.0ms)
+Completed 200 OK in 227ms (Views: 212.0ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/products/new?locale=ua" for 127.0.0.1 at 2016-11-08 15:00:31 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.7ms)
+Completed 200 OK in 133ms (Views: 124.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/products/new?name=sfgsd&description=fgfg&price=44&commit=%D0%97%D0%B1%D0%B5%D1%80%D0%B5%D0%B3%D1%82%D0%B8%21" for 127.0.0.1 at 2016-11-08 15:00:57 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"name"=>"sfgsd", "description"=>"fgfg", "price"=>"44", "commit"=>"Зберегти!"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (25.0ms)
+Completed 200 OK in 342ms (Views: 325.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-08 15:01:04 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (2.0ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (27.7ms)
+Completed 200 OK in 162ms (Views: 155.2ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 15:01:08 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (8.4ms)
+Completed 200 OK in 150ms (Views: 143.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 15:08:54 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (2.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.5ms)
+Completed 200 OK in 127ms (Views: 119.6ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 15:09:34 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (11.0ms)
+Completed 200 OK in 143ms (Views: 138.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 16:03:07 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (2.5ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (Illegal nesting: content can't be both given on the same line as %form and nested within it.):
+    1: %h1= t('.header')
+    2: %form {"accept-charset" => "UTF-8", :action => "/articles", :method => "post"}
+    3:     %label{:for => "name"} #{ t('products.show.name') }
+    4:     %input#name.form-control{:name => "name", :type => "text"}
+    5:     %label{:for => "description"} #{ t('products.show.description') }
+    6:     %textarea#description.form-control{:name => "description", :type => "text"}
+  
+app/views/products/new.html.haml:3
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.9ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (46.2ms)
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 16:03:55 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (2.1ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (Illegal nesting: content can't be both given on the same line as %div and nested within it.):
+    1: %h1= t('.header')
+    2: .form {"accept-charset" => "UTF-8", :action => "/articles", :method => "post"}
+    3:   %label{:for => "name"} #{ t('products.show.name') }
+    4:   %input#name.form-control{:name => "name", :type => "text"}
+    5:   %label{:for => "description"} #{ t('products.show.description') }
+    6:   %textarea#description.form-control{:name => "description", :type => "text"}
+  
+app/views/products/new.html.haml:3
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (9.5ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.1ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (10.1ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (50.0ms)
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 16:04:28 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (13.8ms)
+Completed 200 OK in 134ms (Views: 129.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 16:11:55 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (5.9ms)
+Completed 200 OK in 155ms (Views: 150.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 16:13:01 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (6.4ms)
+Completed 200 OK in 138ms (Views: 133.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users?locale=en" for 127.0.0.1 at 2016-11-08 16:13:41 +0200
+Processing by UsersController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.haml within layouts/application (7.5ms)
+Completed 200 OK in 136ms (Views: 131.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/users/new?locale=en" for 127.0.0.1 at 2016-11-08 16:13:43 +0200
+Processing by UsersController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (2.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/new.html.haml within layouts/application
+  Rendered users/_form.html.haml (8.0ms)
+  Rendered users/new.html.haml within layouts/application (13.6ms)
+Completed 200 OK in 149ms (Views: 143.0ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-08 16:18:26 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (27.6ms)
+Completed 200 OK in 179ms (Views: 161.6ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 16:18:28 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (3.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (22.1ms)
+Completed 200 OK in 332ms (Views: 315.6ms | ActiveRecord: 3.5ms)
+
+
+Started POST "/products" for 127.0.0.1 at 2016-11-08 16:19:06 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"name"=>"dfdf", "description"=>"bdf", "price"=>"43", "commit"=>"Save!"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 10ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+actionpack (5.0.0.1) lib/action_controller/metal/request_forgery_protection.rb:195:in `handle_unverified_request'
+actionpack (5.0.0.1) lib/action_controller/metal/request_forgery_protection.rb:223:in `handle_unverified_request'
+actionpack (5.0.0.1) lib/action_controller/metal/request_forgery_protection.rb:218:in `verify_authenticity_token'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:382:in `block in make_lambda'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:169:in `block (2 levels) in halting'
+actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:170:in `block in halting'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `each'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.1ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.8ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (45.2ms)
+Started POST "/products" for 127.0.0.1 at 2016-11-08 16:22:34 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"name"=>"dfdf", "description"=>"bdf", "price"=>"43", "commit"=>"Save!"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+actionpack (5.0.0.1) lib/action_controller/metal/request_forgery_protection.rb:195:in `handle_unverified_request'
+actionpack (5.0.0.1) lib/action_controller/metal/request_forgery_protection.rb:223:in `handle_unverified_request'
+actionpack (5.0.0.1) lib/action_controller/metal/request_forgery_protection.rb:218:in `verify_authenticity_token'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:382:in `block in make_lambda'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:169:in `block (2 levels) in halting'
+actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:170:in `block in halting'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `each'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.9ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.9ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.8ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (58.6ms)
+Started POST "/products" for 127.0.0.1 at 2016-11-08 16:22:57 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"name"=>"dfdf", "description"=>"bdf", "price"=>"43", "commit"=>"Save!"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+actionpack (5.0.0.1) lib/action_controller/metal/request_forgery_protection.rb:195:in `handle_unverified_request'
+actionpack (5.0.0.1) lib/action_controller/metal/request_forgery_protection.rb:223:in `handle_unverified_request'
+actionpack (5.0.0.1) lib/action_controller/metal/request_forgery_protection.rb:218:in `verify_authenticity_token'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:382:in `block in make_lambda'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:169:in `block (2 levels) in halting'
+actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:170:in `block in halting'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `each'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.4ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (36.6ms)
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 16:26:30 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (12.6ms)
+Completed 200 OK in 42ms (Views: 35.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 16:28:09 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.5ms)
+Completed 200 OK in 126ms (Views: 121.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 16:33:06 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (7.2ms)
+Completed 200 OK in 147ms (Views: 137.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 16:34:10 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (15.7ms)
+Completed 200 OK in 141ms (Views: 134.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products/new?locale=en" for 127.0.0.1 at 2016-11-08 16:34:52 +0200
+Processing by ProductsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/new.html.haml within layouts/application
+  Rendered products/new.html.haml within layouts/application (10.8ms)
+Completed 200 OK in 145ms (Views: 130.4ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/products" for 127.0.0.1 at 2016-11-08 16:35:29 +0200
+Processing by ProductsController#create as HTML
+  Parameters: {"name"=>"ffg", "description"=>"rfdfdfv", "price"=>"44", "commit"=>"Save!"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+actionpack (5.0.0.1) lib/action_controller/metal/request_forgery_protection.rb:195:in `handle_unverified_request'
+actionpack (5.0.0.1) lib/action_controller/metal/request_forgery_protection.rb:223:in `handle_unverified_request'
+actionpack (5.0.0.1) lib/action_controller/metal/request_forgery_protection.rb:218:in `verify_authenticity_token'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:382:in `block in make_lambda'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:169:in `block (2 levels) in halting'
+actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:170:in `block in halting'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `each'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:454:in `call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.5ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.1ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@ishop/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (47.9ms)

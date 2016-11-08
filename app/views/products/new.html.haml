@@ -1,13 +1,11 @@
+%p= csrf_meta_tags
 %h1= t('.header')
-= form_tag controller: 'products', action: :create, method: :post do
-  .form-group
-    = label_tag t('products.show.name')
-    = text_field_tag :name, class: "form-control"
-
-    = label_tag t('products.show.description')
-    = text_area_tag :description, class: "form-control"
-
-    = label_tag t('products.show.price')
-    = number_field_tag :price, class: "form-control"
-    %br
-    = submit_tag t('.save'), class: 'btn btn-success'
+%form.nifty_form{"accept-charset" => "UTF-8", :action => "/products#new", :method => "post"}
+  %label{:for => "name"} #{ t('products.show.name') }
+  %input#name.form-control{:name => "name", :type => "text"}
+  %label{:for => "description"} #{ t('products.show.description') }
+  %textarea#description.form-control{:name => "description", :type => "text"}
+  %label{:for => "price"} #{ t('products.show.price') }
+  %input#price.form-control{:name => "price", :type => "number"}
+  %input{:name => "request_forgery_protection_token", :type => "hidden"} #{ Authtoken!!!!!  }
+  %input.btn.btn-success{"data-disable-with" => t('.save'), :name => "commit", :type => "submit", :value => t('.save')}/
