@@ -1,20 +1,18 @@
 %title= 'Ishop - Cursor learn project'
 .head
-  %p= csrf_meta_tags
-  %p= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-  %p= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-
+  = csrf_meta_tags
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 %span= link_to 'EN', '?locale=en'
 %span= link_to 'UA', '?locale=ua'
-
 %ul.nav.nav-pills
-  %li{:role => "presentation"}
-    %a= link_to t('.products'), products_path
-  %li{:role => "presentation"}
-    %a= link_to t('.users'),users_path
-  %li{:role => "presentation"}
-    %a= link_to t('.cart'), cart_path(session[:cart_id])
-  %li{:role => "presentation"}
-    %a= link_to image_tag('cart.png', size: '40x40'), cart_path(session[:cart_id])
+  %li{:role => 'presentation'}
+    = link_to t('.products'), products_path
+  %li{:role => 'presentation'}
+    = link_to t('.users'), users_path
+  %li{:role => 'presentation'}
+    = link_to t('.cart'), cart_path(session[:cart_id])
+  %li{:role => 'presentation'}
+    = link_to image_tag('cart.png', size: '40x40'), cart_path(session[:cart_id])
 %p= notice
 %p= yield

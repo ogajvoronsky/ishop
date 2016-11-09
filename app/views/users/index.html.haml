@@ -1,4 +1,5 @@
-%h1= t('users.users_list')
+.panel-info.h1
+  .panel-heading= t('users.users_list')
 %table.table
   %th= User.human_attribute_name('name')
   %th= User.human_attribute_name('age')
@@ -7,8 +8,9 @@
     %tr
     %td= user.name
     %td= user.age
-    %td= link_to t('users.show'), user
-    %td= link_to t('users.edit'), edit_user_path(user)
-    %td= link_to t('users.delete'), user, method: :delete, data: { confirm: t('users.are_you_shure') }
+    %td
+      = link_to t('users.show'), user, class: 'btn btn-primary'
+      = link_to t('users.delete'), user, method: :delete, data: { confirm: t('users.are_you_shure') }, class: 'btn btn-danger'
+      = link_to t('users.edit'), edit_user_path(user), class: 'btn btn-success'
     %br
-%p= link_to t('users.new'), new_user_path
+%p= link_to t('users.new'), new_user_path, class: 'btn btn-success'

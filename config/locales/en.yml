@@ -7,7 +7,7 @@ en:
       cart: Cart
   products:
     index:
-      products: List of products
+      products: Products list
       name_product: Product name
       buy: Buy Item
       are_you_shure: Are you shure?

@@ -1,15 +1,15 @@
 %p= csrf_meta_tags
-%h1= t('.header')
+.panel-info.h1
+  .panel-heading= t('.header')
 %form{"accept-charset" => "UTF-8", :action => "/products?locale=#{session[:locale]}#new", :method => "post"}
   %label{:for => "name"} #{ t('products.show.name') }
   %input#name.form-control{:name => "name", :type => "text"}
-
+  %br
   %label{:for => "description"} #{ t('products.show.description') }
   %textarea#description.form-control{:name => "description", :type => "text"}
-
+  %br
   %label{:for => "price"} #{ t('products.show.price') }
   %input#price.form-control{:name => "price", :type => "number"}
-
+  %br
   %input{:name => "authenticity_token", :type => "hidden", :value => session[:_csrf_token] }
-
   %input.btn.btn-success{"data-disable-with" => t('.save'), :name => "commit", :type => "submit", :value => t('.save')}
