@@ -1,4 +1,4 @@
 .panel-info.h1
   .panel-heading= t('users.create_user')
-%p= render 'form', user: @user
-%p= link_to t('users.users_list'), users_path, class: 'btn btn-success'
+=render 'form', user: @user
+=link_to t('users.users_list'), users_path, class: 'btn btn-success'

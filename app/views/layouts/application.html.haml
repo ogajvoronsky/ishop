@@ -1,5 +1,7 @@
 %title= 'Ishop - Cursor learn project'
 .head
+  :javascript
+    window.I18n = #{current_translations.to_json.html_safe}
   = csrf_meta_tags
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'

@@ -4773,3 +4773,323 @@ Processing by UsersController#index as HTML
 Completed 200 OK in 322ms (Views: 306.5ms | ActiveRecord: 2.6ms)
 
 
+Started GET "/users/new?locale=ua" for 127.0.0.1 at 2016-11-09 14:07:22 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  Rendering users/new.html.haml within layouts/application
+  Rendered users/new.html.haml within layouts/application (21.1ms)
+Completed 200 OK in 1172ms (Views: 958.1ms | ActiveRecord: 23.0ms)
+
+
+Started GET "/users/new?locale=ua" for 127.0.0.1 at 2016-11-09 14:07:43 +0200
+Processing by UsersController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  Rendering users/new.html.haml within layouts/application
+  Rendered users/_form.html.haml (57.0ms)
+  Rendered users/new.html.haml within layouts/application (65.3ms)
+Completed 200 OK in 294ms (Views: 280.0ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/users/new?locale=ua" for 127.0.0.1 at 2016-11-09 14:07:51 +0200
+Processing by UsersController#new as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (2.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  Rendering users/new.html.haml within layouts/application
+  Rendered users/_form.html.haml (9.8ms)
+  Rendered users/new.html.haml within layouts/application (17.1ms)
+Completed 200 OK in 246ms (Views: 238.5ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-09 14:17:42 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (87.1ms)
+Completed 200 OK in 1218ms (Views: 1027.9ms | ActiveRecord: 26.5ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=2" for 127.0.0.1 at 2016-11-09 14:17:47 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"2"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 54], ["product_id", 2]]
+  [1m[35m (10.9ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.9ms)
+Completed 200 OK in 148ms (Views: 14.1ms | ActiveRecord: 16.7ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=2" for 127.0.0.1 at 2016-11-09 14:17:48 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"2"}
+  [1m[36mCart Load (1.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 54], ["product_id", 2]]
+  [1m[35m (6.8ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (2.0ms)
+Completed 200 OK in 74ms (Views: 15.2ms | ActiveRecord: 11.3ms)
+
+
+Started GET "/cart.54?locale=ua" for 127.0.0.1 at 2016-11-09 14:18:16 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 54]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 54]]
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 54]]
+  Rendered carts/show.html.haml within layouts/application (84.0ms)
+Completed 200 OK in 412ms (Views: 377.7ms | ActiveRecord: 4.7ms)
+
+
+Started DELETE "/cart?locale=ua" for 127.0.0.1 at 2016-11-09 14:18:20 +0200
+Processing by CartsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"jKOn3NpqvEwAaV0d1FMzI/0UqeiTBDTgzG3J0B4HwAGI0QWKLSkAPPPTQ8Julu2pGGPAm93CwS11tiscDRdhLg==", "locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[31mDELETE FROM "carts_products" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 54]]
+  [1m[35mSQL (1.0ms)[0m  [1m[31mDELETE FROM "carts" WHERE "carts"."id" = $1[0m  [["id", 54]]
+  [1m[35m (31.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/cart?locale=ua
+Completed 302 Found in 48ms (ActiveRecord: 35.3ms)
+
+
+Started GET "/cart?locale=ua" for 127.0.0.1 at 2016-11-09 14:18:20 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.3ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", 2016-11-09 12:18:20 UTC], ["updated_at", 2016-11-09 12:18:20 UTC]]
+  [1m[35m (10.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 55], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 55]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 55]]
+  Rendered carts/show.html.haml within layouts/application (15.7ms)
+Completed 200 OK in 213ms (Views: 177.2ms | ActiveRecord: 16.3ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-09 14:18:22 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 55], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (24.8ms)
+Completed 200 OK in 198ms (Views: 184.7ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=1" for 127.0.0.1 at 2016-11-09 14:18:25 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"1"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 55], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 55], ["LIMIT", 1]]
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 55], ["product_id", 1]]
+  [1m[35m (257.3ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.7ms)
+Completed 200 OK in 320ms (Views: 12.3ms | ActiveRecord: 261.3ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=1" for 127.0.0.1 at 2016-11-09 14:18:25 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"1"}
+  [1m[36mCart Load (1.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 55], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 55], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 55], ["product_id", 1]]
+  [1m[35m (11.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.7ms)
+Completed 200 OK in 61ms (Views: 12.2ms | ActiveRecord: 14.5ms)
+
+
+Started GET "/cart.55?locale=ua" for 127.0.0.1 at 2016-11-09 14:18:30 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 55], ["LIMIT", 1]]
+  [1m[36mCACHE (0.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 55], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 55]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 55]]
+  [1m[36mProduct Load (2.7ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 55]]
+  Rendered carts/show.html.haml within layouts/application (29.4ms)
+Completed 200 OK in 270ms (Views: 235.8ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-09 20:32:17 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (33.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (40.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (16.3ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", 2016-11-09 18:32:19 UTC], ["updated_at", 2016-11-09 18:32:19 UTC]]
+  [1m[35m (20.8ms)[0m  [1m[35mCOMMIT[0m
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (29.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (130.3ms)
+Completed 200 OK in 2388ms (Views: 1838.5ms | ActiveRecord: 159.4ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=2860" for 127.0.0.1 at 2016-11-09 20:32:26 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"2860"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 56], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 56], ["LIMIT", 1]]
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2860], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (45.8ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 56], ["product_id", 2860]]
+  [1m[35m (45.7ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (1.1ms)
+Completed 200 OK in 277ms (Views: 17.9ms | ActiveRecord: 95.7ms)
+
+
+Started GET "/cart.56?locale=ua" for 127.0.0.1 at 2016-11-09 20:32:41 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 56], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 56], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (18.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 56]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 56]]
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 56]]
+  Rendered carts/show.html.haml within layouts/application (115.0ms)
+Completed 200 OK in 495ms (Views: 430.3ms | ActiveRecord: 21.2ms)
+
+
+Started DELETE "/cart?locale=ua" for 127.0.0.1 at 2016-11-09 20:37:32 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CartsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"63YdqEFCyMI2XKMGkW68Yk9fMwNsjIP9nzodR6w2lkor5PsAesMoyXUAmgacI9hr9E8tNoqxGn/V/+qM4y8BFQ==", "locale"=>"ua"}
+  [1m[36mCart Load (1.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 56], ["LIMIT", 1]]
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 56], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[31mDELETE FROM "carts_products" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 56]]
+  [1m[35mSQL (1.0ms)[0m  [1m[31mDELETE FROM "carts" WHERE "carts"."id" = $1[0m  [["id", 56]]
+  [1m[35m (13.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/cart?locale=ua
+Completed 302 Found in 287ms (ActiveRecord: 32.7ms)
+
+
+Started GET "/cart?locale=ua" for 127.0.0.1 at 2016-11-09 20:37:33 +0200
+Processing by CartsController#show as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 56], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "carts" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", 2016-11-09 18:37:33 UTC], ["updated_at", 2016-11-09 18:37:33 UTC]]
+  [1m[35m (8.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 57]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 57]]
+  Rendered carts/show.html.haml within layouts/application (81.5ms)
+Completed 200 OK in 943ms (Views: 892.3ms | ActiveRecord: 21.1ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-09 20:37:36 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (41.2ms)
+Completed 200 OK in 351ms (Views: 341.2ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=1" for 127.0.0.1 at 2016-11-09 20:37:39 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"1"}
+  [1m[36mCart Load (1.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 57], ["product_id", 1]]
+  [1m[35m (24.1ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.9ms)
+Completed 200 OK in 106ms (Views: 14.3ms | ActiveRecord: 27.8ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=1" for 127.0.0.1 at 2016-11-09 20:37:39 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"1"}
+  [1m[36mCart Load (1.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  [1m[36mCACHE (0.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 57], ["product_id", 1]]
+  [1m[35m (8.0ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.8ms)
+Completed 200 OK in 67ms (Views: 14.2ms | ActiveRecord: 12.9ms)
+
+
+Started GET "/cart.57?locale=ua" for 127.0.0.1 at 2016-11-09 20:37:47 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 57]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 57]]
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 57]]
+  Rendered carts/show.html.haml within layouts/application (29.4ms)
+Completed 200 OK in 266ms (Views: 241.4ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-09 20:37:49 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (22.8ms)
+Completed 200 OK in 193ms (Views: 180.3ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=2860" for 127.0.0.1 at 2016-11-09 20:37:53 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"2860"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  [1m[36mProduct Load (1.5ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2860], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 57], ["product_id", 2860]]
+  [1m[35m (10.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.8ms)
+Completed 200 OK in 71ms (Views: 12.2ms | ActiveRecord: 14.9ms)
+
+
+Started GET "/cart/add?locale=ua&product_id=2860" for 127.0.0.1 at 2016-11-09 20:37:53 +0200
+Processing by CartsController#add as JS
+  Parameters: {"locale"=>"ua", "product_id"=>"2860"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2860], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "carts_products" ("cart_id", "product_id") VALUES ($1, $2)[0m  [["cart_id", 57], ["product_id", 2860]]
+  [1m[35m (11.1ms)[0m  [1m[35mCOMMIT[0m
+  Rendering carts/add.js.erb
+  Rendered carts/add.js.erb (0.8ms)
+Completed 200 OK in 67ms (Views: 13.1ms | ActiveRecord: 15.0ms)
+
+

@@ -1,4 +1,6 @@
 ua:
+  javascript:
+    product_added_to_cart: Товар додано до кошика
   layouts:
     application:
       products: Товари
