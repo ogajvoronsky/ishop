@@ -1,7 +1,7 @@
 .panel-info.h1
   .panel-heading= t '.current_cart'
 
-%h0=t('.header', count: @products.count)
+-# %h0=t('.header') count: @products.count
 
 - if @products.count > 0 then
 
@@ -15,6 +15,6 @@
       %td= product.price
 
 <br>
-%p= link_to t('.back'), products_path
-%p= link_to t('.empty_cart'), cart_path, method: :delete
+%p= link_to t('.back'), products_path, class: 'btn btn-success'
+%p= link_to t('.empty_cart'), cart_path, method: :delete, class: 'btn btn-danger'
 

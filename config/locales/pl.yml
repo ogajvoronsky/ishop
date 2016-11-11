@@ -1,0 +1,67 @@
+
+pl:
+  javascript:
+    product_added_to_cart: Produkt został dodany do koszyka
+  layouts:
+    application:
+      products: Produkty
+      users: Użytkownicy
+      cart: Wózek
+  products:
+    index:
+      products: Lista produktów
+      name_product: Nazwa produktu
+      buy: Kup przedmiot
+      are_you_shure: Jesteś pewny?
+      details: Detale
+      destroy: Zniszczyć
+      new: Nowa pozycja
+    show:
+      product_caption: Szczegóły Produktu
+      name: Nazwa
+      description: Opis
+      price: Cena
+      back: Powrót
+    new:
+      header: Dodaj nowy produkt
+      save: Zapisać!
+  carts:
+    add:
+      product_added: 'Produkt został dodany do koszyka'
+    show:
+      current_cart: Twój koszyk
+      header:
+        zero: Twój koszyk jest pusty :(
+        one: Produkt w koszyku
+        other: Produktów w koszyku
+      name: Nazwa
+      price: Cena
+      quantity: Ilość
+      back: Powrót do listy produktów
+      empty_cart: Opróżnienie koszyka
+  users:
+    name: Nazwa
+    age: Wiek
+    editing_user: Edycja użytkownika
+    show: Pokazać
+    edit: Edytować
+    delete: Usunąć
+    back: Powrót
+    save: Zapisz zmiany
+    users_list: Użytkownicy
+    are_you_shure: Usunąć użytkownika?
+    new: Nowy użytkownik 
+    users_list: Lista użytkowników
+
+  activerecord:
+    attributes:
+      product:
+        product_created: Produkt prawidłowo stworzone
+        product_deleted: Produkt został pomyślnie usunięty
+        product: Produkt
+        price: Cena
+
+      user:
+        name: Nazwa
+        age:  Wiek
+
