@@ -1,0 +1,14 @@
+- if @products.count > 0 then
+
+  %table.table
+    %th=t '.name'
+    %th=t '.price'
+    %tbody
+    - @products.each do |product|
+      %tr
+      %td= product.name
+      %td= product.price
+  %tr
+    .bottom-aligned-row
+      = t('.total_price')
+      = @cart.products.sum(:price)

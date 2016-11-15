@@ -17,5 +17,8 @@
     = link_to t('.cart'), cart_path(session[:cart_id])
   %li{:role => 'presentation'}
     = link_to image_tag('cart.png', size: '40x40'), cart_path(session[:cart_id])
+  %li{:role => 'presentation'}
+    = link_to t('.login_with_google'), user_google_oauth2_omniauth_authorize_path(:google)
 %p= notice
+%p= alert
 %p= yield

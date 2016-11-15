@@ -6,6 +6,7 @@ ua:
       products: Товари
       users: Користувачі
       cart: Кошик
+      login_with_google: Залогуватись з обліковим записом Google
   products:
     index:
       products: Список товарів
@@ -38,6 +39,7 @@ ua:
       quantity: Кількість
       back: Назад до переліку товарів
       empty_cart: Очистити кошик
+      order: Замовити
   users:
     name: Ім'я
     age: Вік

@@ -1,11 +1,7 @@
 class CartMailer < ApplicationMailer
+  default from: 'ogajvoronsky@outlook.com'
 
-  def product_added(product)
-    @product = product
-    mail(to: 'ogajvoronsky@gmail.com',
-         subject: 'Product just was added!')
-  end
-  def create_product_added
+  def mail_order(cart)
 
   end
 end

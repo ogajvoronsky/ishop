@@ -18,7 +18,7 @@ class CartsController < ApplicationController
   end
 
   def order
-
+    render 'products_path'
   end
 
     private

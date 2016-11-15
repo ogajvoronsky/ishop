@@ -7,6 +7,7 @@ pl:
       products: Produkty
       users: Użytkownicy
       cart: Wózek
+      login_with_google: Zaloguj się kontem Google
   products:
     index:
       products: Lista produktów
@@ -39,6 +40,7 @@ pl:
       quantity: Ilość
       back: Powrót do listy produktów
       empty_cart: Opróżnienie koszyka
+      order: Zamówienie
   users:
     name: Nazwa
     age: Wiek

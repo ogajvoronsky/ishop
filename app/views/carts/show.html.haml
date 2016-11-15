@@ -1,20 +1,18 @@
 .panel-info.h1
   .panel-heading= t '.current_cart'
 
--# %h0=t('.header') count: @products.count
+= render 'current_cart_list'
 
-- if @products.count > 0 then
+%br
+%span= link_to t('.back'), products_path, class: 'btn btn-success'
 
-  %table.table
-    %th=t '.name'
-    %th=t '.price'
-    %tbody
-    - @products.each do |product|
-      %tr
-      %td= product.name
-      %td= product.price
+- if @cart.products.count == 0 then
+  %button.btn.btn-warning.disabled{ "data-toggle" => "modal", "data-target" => "#order" }
+    = t('.order')
+- else
+  %button.btn.btn-warning{ "data-toggle" => "modal", "data-target" => "#order" }
+    = t('.order')
 
-<br>
-%p= link_to t('.back'), products_path, class: 'btn btn-success'
-%p= link_to t('.empty_cart'), cart_path, method: :delete, class: 'btn btn-danger'
+%span= link_to t('.empty_cart'), cart_path, method: :delete, class: 'btn btn-danger'
 
+=render 'order'

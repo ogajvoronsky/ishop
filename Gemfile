@@ -12,6 +12,15 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails'
 gem 'pg'
 gem 'haml'
+gem 'figaro'
+gem 'devise'
+gem 'rb-inotify'
+gem 'devise-bootstrap-views'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets

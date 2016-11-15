@@ -7,6 +7,7 @@ en:
       products: Products
       users: Users
       cart: Cart
+      login_with_google: Login with Google account
   products:
     index:
       products: Products list
@@ -39,6 +40,7 @@ en:
       quantity: Quantity
       back: Back to product list
       empty_cart: Empty cart
+      order: Order
   users:
     name: Name
     age: Age

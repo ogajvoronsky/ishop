@@ -1,0 +1,17 @@
+#order.modal.fade{:tabindex => "-1", :role => "dialog"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title
+          = t('carts.show.order')
+      .modal-body
+      = render 'current_cart_list'
+
+      .form{"accept-charset" => "UTF-8", :action => "/cart?locale=#{session[:locale]}#order", :method => "post"}
+        %label{:for => "email"} #{ t('.Email') }
+        %input#name.form-control{:name => "email", :type => "text"}
+        %input{:name => "authenticity_token", :type => "hidden", :value => session[:_csrf_token] }
+      .modal-footer
+        %input.btn.btn-success{:name => "email", :type => "submit", :value => "Order"}
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
