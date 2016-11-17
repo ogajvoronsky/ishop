@@ -18,7 +18,9 @@ class CartsController < ApplicationController
   end
 
   def order
-    render 'products_path'
+    @email = params[:email]
+    OrderMailer.order_mail(@user,@products).deliver_later
+    p @email
   end
 
     private

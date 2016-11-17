@@ -2,12 +2,12 @@ require 'rails_helper'
 require 'spec_helper'
 
 describe ProductsController do
- describe '#index' do
+ describe 'Get index' do
    before do
      get :index
    end
    it 'Returns OK' do
-     expect(response).to be_ok
+     expect(response).to render_template("index")
    end
  end
 
@@ -22,5 +22,6 @@ describe ProductsController do
       expect(Product.last.name).to eq 'Prod2'
     end
   end
+
 
 end

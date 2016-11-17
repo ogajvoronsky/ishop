@@ -7,7 +7,7 @@
 %span= link_to t('.back'), products_path, class: 'btn btn-success'
 
 - if @cart.products.count == 0 then
-  %button.btn.btn-warning.disabled{ "data-toggle" => "modal", "data-target" => "#order" }
+  %button.btn.btn-warning.disabled
     = t('.order')
 - else
   %button.btn.btn-warning{ "data-toggle" => "modal", "data-target" => "#order" }

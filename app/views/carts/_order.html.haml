@@ -8,10 +8,10 @@
       .modal-body
       = render 'current_cart_list'
 
-      .form{"accept-charset" => "UTF-8", :action => "/cart?locale=#{session[:locale]}#order", :method => "post"}
-        %label{:for => "email"} #{ t('.Email') }
-        %input#name.form-control{:name => "email", :type => "text"}
-        %input{:name => "authenticity_token", :type => "hidden", :value => session[:_csrf_token] }
-      .modal-footer
-        %input.btn.btn-success{:name => "email", :type => "submit", :value => "Order"}
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+
+      = form_tag order_cart_path do
+        = label_tag('E-mail')
+        = email_field_tag(:email)
+        = submit_tag('Order', class: 'btn btn-success', action: 'order')
+        %button.btn.btn-default{"data-dismiss" => "modal"}  Close
+

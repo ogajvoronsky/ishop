@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :comments
   root 'products#index'
   resources :products, only: [ :index, :new, :create, :show, :destroy ]
@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   #resources :carts, only: [ :show, :destroy ]
   resource  :cart, only: [ :show, :destroy ] do
           get :add, on: :member
-          get 'order', :order, on: :member
+          post :order, on: :member
   end
   resource :carts, only: [ :show, :destroy ] do
     post :destroy, on: :member
