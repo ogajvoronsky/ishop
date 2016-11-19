@@ -13462,3 +13462,1105 @@ Completed 200 OK in 440ms (Views: 384.7ms | ActiveRecord: 14.6ms)
 
 
   [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-18 13:18:39 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (36.4ms)
+Completed 200 OK in 283ms (Views: 211.9ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-11-19 17:34:21 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (25.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/" for 127.0.0.1 at 2016-11-19 17:34:21 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+Processing by ProductsController#index as HTML
+  [1m[36mCart Load (44.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mCart Load (50.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (25.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (21.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (32.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mProduct Load (33.0ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (131.2ms)
+  Rendered products/index.html.haml within layouts/application (124.9ms)
+Completed 200 OK in 4101ms (Views: 3124.8ms | ActiveRecord: 238.3ms)
+
+
+Completed 200 OK in 4093ms (Views: 3127.8ms | ActiveRecord: 253.6ms)
+
+
+Started GET "/cart.71?locale=en" for 127.0.0.1 at 2016-11-19 17:34:30 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (45.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (154.2ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (12.4ms)
+  Rendered carts/_order.html.haml (30.9ms)
+  Rendered carts/show.html.haml within layouts/application (261.7ms)
+Completed 200 OK in 648ms (Views: 505.5ms | ActiveRecord: 51.0ms)
+
+
+Started POST "/cart/order?locale=en" for 127.0.0.1 at 2016-11-19 17:34:45 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Law8Iy30tOeVz4GQ/eqTa6uDkHsgUgOu0MUaVteb79cydy/Uq2W7GKJ4kW5IqvbBfd6N/XI+0u3onnXdTq4aZA==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"en"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: fcd6f5c2-8f26-4855-9504-4341cd613bc8) to Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+[ActiveJob] [ActionMailer::DeliveryJob] [fcd6f5c2-8f26-4855-9504-4341cd613bc8] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+  Rendering carts/order.html.haml within layouts/application
+[ActiveJob] [ActionMailer::DeliveryJob] [fcd6f5c2-8f26-4855-9504-4341cd613bc8] OrderMailer#order_mail: processed outbound mail in 5.2ms
+  Rendered carts/order.html.haml within layouts/application (1.9ms)
+[ActiveJob] [ActionMailer::DeliveryJob] [fcd6f5c2-8f26-4855-9504-4341cd613bc8] Performed ActionMailer::DeliveryJob from Async(mailers) in 9.37ms
+Completed 200 OK in 339ms (Views: 220.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/cart.71?locale=en" for 127.0.0.1 at 2016-11-19 17:38:39 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (1.5ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (24.2ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (8.5ms)
+  Rendered carts/_order.html.haml (25.0ms)
+  Rendered carts/show.html.haml within layouts/application (82.6ms)
+Completed 200 OK in 303ms (Views: 271.2ms | ActiveRecord: 7.9ms)
+
+
+Started POST "/cart/order?locale=en" for 127.0.0.1 at 2016-11-19 17:38:47 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5hmjMpWiOgCJezbqd1Z2+VnS5qsKe47IfBpGM9ShWSH5wrDFEzM1/77MJhTCFhNTj4/7LVgXX4tEQSm4TZSskg==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"en"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 6dcd3818-8945-4767-be55-b3017ded17a5) to Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+[ActiveJob] [ActionMailer::DeliveryJob] [6dcd3818-8945-4767-be55-b3017ded17a5] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+No template found for CartsController#order, rendering head :no_content
+[ActiveJob] [ActionMailer::DeliveryJob] [6dcd3818-8945-4767-be55-b3017ded17a5] OrderMailer#order_mail: processed outbound mail in 3.7ms
+Completed 204 No Content in 143ms (ActiveRecord: 2.9ms)
+
+
+[ActiveJob] [ActionMailer::DeliveryJob] [6dcd3818-8945-4767-be55-b3017ded17a5] Performed ActionMailer::DeliveryJob from Async(mailers) in 37.61ms
+Started GET "/cart.71?locale=en" for 127.0.0.1 at 2016-11-19 17:39:43 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (3.3ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (33.1ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (9.5ms)
+  Rendered carts/_order.html.haml (27.6ms)
+  Rendered carts/show.html.haml within layouts/application (89.0ms)
+Completed 200 OK in 363ms (Views: 328.7ms | ActiveRecord: 9.3ms)
+
+
+Started POST "/cart/order?locale=en" for 127.0.0.1 at 2016-11-19 17:39:50 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3xsVXH/s9EscUkioarrUasNubqElOV2LSLuyg6P4n37AwAar+X37tCvlWFbf+rHAFTNzJ3dVjMhw4N0IOs1qzQ==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"en"}
+  [1m[36mCart Load (2.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: cab92012-29ea-45db-aaea-6950814fafab) to Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+[ActiveJob] [ActionMailer::DeliveryJob] [cab92012-29ea-45db-aaea-6950814fafab] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+[ActiveJob] [ActionMailer::DeliveryJob] [cab92012-29ea-45db-aaea-6950814fafab] OrderMailer#order_mail: processed outbound mail in 5.2ms
+Completed 406 Not Acceptable in 60ms (ActiveRecord: 6.1ms)
+
+
+[ActiveJob] [ActionMailer::DeliveryJob] [cab92012-29ea-45db-aaea-6950814fafab] Performed ActionMailer::DeliveryJob from Async(mailers) in 9.09ms
+  
+ActionController::UnknownFormat (CartsController#order is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []):
+  
+actionpack (5.0.0.1) lib/action_controller/metal/implicit_render.rb:43:in `default_render'
+actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `block in send_action'
+actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `tap'
+actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+actionpack (5.0.0.1) lib/abstract_controller/base.rb:188:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:126:in `call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:455:in `call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+omniauth (1.3.1) lib/omniauth/strategy.rb:186:in `call!'
+omniauth (1.3.1) lib/omniauth/strategy.rb:164:in `call'
+warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+warden (1.2.6) lib/warden/manager.rb:34:in `catch'
+warden (1.2.6) lib/warden/manager.rb:34:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'
+web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.3.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (12.0ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.4ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.6ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (77.2ms)
+Started GET "/users?locale=en" for 127.0.0.1 at 2016-11-19 17:41:58 +0200
+Processing by UsersController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (3.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering users/index.html.haml within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.haml within layouts/application (21.0ms)
+Completed 200 OK in 215ms (Views: 185.9ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/cart.71?locale=en" for 127.0.0.1 at 2016-11-19 17:42:00 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (1.5ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (23.8ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_order.html.haml (7.4ms)
+  Rendered carts/show.html.haml within layouts/application (54.7ms)
+Completed 500 Internal Server Error in 85ms (ActiveRecord: 6.7ms)
+
+
+  
+SyntaxError (/home/galex/ishop2/app/views/carts/_order.html.haml:15: syntax error, unexpected ':', expecting =>
+..., remote: 'true', data-dismiss: 'modal')
+...                               ^
+/home/galex/ishop2/app/views/carts/_order.html.haml:16: syntax error, unexpected ')', expecting tSTRING_DEND
+));}\n      <button class='btn ...
+  ^
+/home/galex/ishop2/app/views/carts/_order.html.haml:16: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+));}\n      <button class='btn btn-default' data-dismi...
+                         ^
+/home/galex/ishop2/app/views/carts/_order.html.haml:16: syntax error, unexpected tIDENTIFIER, expecting tSTRING_DEND
+...on class='btn btn-default' data-dismiss='modal'>Close</butto...
+...                               ^
+/home/galex/ishop2/app/views/carts/_order.html.haml:16: unknown regexp options - dv
+unmatched close parenthesis: /button>\n", 0, false);end;_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n    </i
+/home/galex/ishop2/app/views/carts/_order.html.haml:16: syntax error, unexpected $undefined
+...amlout.push_text("\n    </div>\n  </div>\n</div>\n", -3, fal...
+...                               ^
+/home/galex/ishop2/app/views/carts/_order.html.haml:16: unknown regexp options - dv
+/home/galex/ishop2/app/views/carts/_order.html.haml:16: syntax error, unexpected $undefined
+...\n    </div>\n  </div>\n</div>\n", -3, false);::Haml::Util.h...
+...                               ^
+/home/galex/ishop2/app/views/carts/_order.html.haml:16: unterminated string meets end of file
+/home/galex/ishop2/app/views/carts/_order.html.haml:16: syntax error, unexpected end-of-input, expecting tSTRING_DEND):
+  
+app/views/carts/_order.html.haml:15: syntax error, unexpected ':', expecting =>
+app/views/carts/_order.html.haml:16: syntax error, unexpected ')', expecting tSTRING_DEND
+app/views/carts/_order.html.haml:16: syntax error, unexpected keyword_class, expecting keyword_do or '{' or '('
+app/views/carts/_order.html.haml:16: syntax error, unexpected tIDENTIFIER, expecting tSTRING_DEND
+app/views/carts/_order.html.haml:16: unknown regexp options - dv
+app/views/carts/_order.html.haml:16: syntax error, unexpected $undefined
+app/views/carts/_order.html.haml:16: unknown regexp options - dv
+app/views/carts/_order.html.haml:16: syntax error, unexpected $undefined
+app/views/carts/_order.html.haml:16: unterminated string meets end of file
+app/views/carts/_order.html.haml:16: syntax error, unexpected end-of-input, expecting tSTRING_DEND
+app/views/carts/show.html.haml:18:in `_app_views_carts_show_html_haml___2273481069288827696_70307798470000'
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (18.3ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.6ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (70.3ms)
+Started GET "/" for 127.0.0.1 at 2016-11-19 17:47:51 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (3.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+Started GET "/" for 127.0.0.1 at 2016-11-19 17:47:51 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mCart Load (1.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mCart Load (10.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (7.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (53.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mProduct Load (1.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (65.0ms)
+  Rendered products/index.html.haml within layouts/application (63.3ms)
+Completed 200 OK in 2876ms (Views: 2170.8ms | ActiveRecord: 96.0ms)
+
+
+Completed 200 OK in 2820ms (Views: 2225.1ms | ActiveRecord: 111.1ms)
+
+
+Started GET "/cart.71?locale=en" for 127.0.0.1 at 2016-11-19 17:47:57 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (2.0ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (53.8ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (9.5ms)
+  Rendered carts/_order.html.haml (25.6ms)
+  Rendered carts/show.html.haml within layouts/application (117.2ms)
+Completed 200 OK in 381ms (Views: 298.3ms | ActiveRecord: 11.3ms)
+
+
+Started POST "/cart/order?locale=en" for 127.0.0.1 at 2016-11-19 17:48:04 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5NB0l44IywS6F0o9e277MQRMJU0Ee31puyYiJgEls5L7C2dgCJnE+42gWsPOLp6b0hE4y1YXrCqDfU2tmBBGIQ==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"en"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 2536bfcd-5ac8-4c9a-9969-723dc858d8ef) to Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+Redirected to http://localhost:3000/products?locale=en
+[ActiveJob] [ActionMailer::DeliveryJob] [2536bfcd-5ac8-4c9a-9969-723dc858d8ef] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+Completed 302 Found in 98ms (ActiveRecord: 2.8ms)
+
+
+[ActiveJob] [ActionMailer::DeliveryJob] [2536bfcd-5ac8-4c9a-9969-723dc858d8ef] OrderMailer#order_mail: processed outbound mail in 4.2ms
+[ActiveJob] [ActionMailer::DeliveryJob] [2536bfcd-5ac8-4c9a-9969-723dc858d8ef] Performed ActionMailer::DeliveryJob from Async(mailers) in 8.5ms
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-19 17:48:04 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (19.5ms)
+Completed 200 OK in 240ms (Views: 220.5ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-19 18:10:03 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.6ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (71.8ms)
+Completed 200 OK in 1249ms (Views: 907.1ms | ActiveRecord: 32.9ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-19 18:10:08 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (22.2ms)
+Completed 200 OK in 221ms (Views: 198.1ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/cart.71?locale=ua" for 127.0.0.1 at 2016-11-19 18:10:11 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (1.9ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (64.9ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (9.8ms)
+  Rendered carts/_order.html.haml (31.8ms)
+  Rendered carts/show.html.haml within layouts/application (140.2ms)
+Completed 200 OK in 555ms (Views: 395.4ms | ActiveRecord: 10.2ms)
+
+
+Started POST "/cart/order?locale=ua" for 127.0.0.1 at 2016-11-19 18:10:18 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"6klKXgnkkmVhepMEJkUiSR0t1Bn7qH6fOWaZJ6DmNT31klmpj3WdmlbNg/qTBUfjy3DJn6nEr9wBPfasOdPAjg==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 018566d4-ef80-4697-805e-f14216c65047) to Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+Redirected to http://localhost:3000/products?locale=ua
+Completed 302 Found in 1028ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-19 18:10:19 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (3.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (23.9ms)
+[ActiveJob] [ActionMailer::DeliveryJob] [018566d4-ef80-4697-805e-f14216c65047] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+[ActiveJob] [ActionMailer::DeliveryJob] [018566d4-ef80-4697-805e-f14216c65047] OrderMailer#order_mail: processed outbound mail in 6.3ms
+[ActiveJob] [ActionMailer::DeliveryJob] [018566d4-ef80-4697-805e-f14216c65047] Performed ActionMailer::DeliveryJob from Async(mailers) in 8.4ms
+Completed 200 OK in 267ms (Views: 246.3ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-19 18:24:09 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (57.1ms)
+Completed 200 OK in 1361ms (Views: 1084.3ms | ActiveRecord: 35.7ms)
+
+
+Started GET "/cart.71?locale=ua" for 127.0.0.1 at 2016-11-19 18:24:13 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (2.1ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (52.7ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (9.6ms)
+  Rendered carts/_order.html.haml (30.5ms)
+  Rendered carts/show.html.haml within layouts/application (121.0ms)
+Completed 200 OK in 407ms (Views: 333.9ms | ActiveRecord: 7.7ms)
+
+
+Started POST "/cart/order?locale=ua" for 127.0.0.1 at 2016-11-19 18:24:19 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"k/Hyo8mQeNCSnjLUJ5XmaV1mihDF5NTPhK0K5n+kNOiMKuFUTwF3L6UpIiqS1YPDizuXlpeIBYy89mVt5pHBWw==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: c6c6e6ad-9996-4599-9113-02bc54985862) to Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+Redirected to http://localhost:3000/products?locale=ua
+Completed 302 Found in 74ms (ActiveRecord: 2.3ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-19 18:24:19 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (4.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::DeliveryJob] [c6c6e6ad-9996-4599-9113-02bc54985862] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+  Rendering products/index.html.haml within layouts/application
+[ActiveJob] [ActionMailer::DeliveryJob] [c6c6e6ad-9996-4599-9113-02bc54985862] OrderMailer#order_mail: processed outbound mail in 4.4ms
+[ActiveJob] [ActionMailer::DeliveryJob] [c6c6e6ad-9996-4599-9113-02bc54985862] Performed ActionMailer::DeliveryJob from Async(mailers) in 16.77ms
+  [1m[36mProduct Load (2.6ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (32.5ms)
+Completed 200 OK in 266ms (Views: 246.6ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/cart.71?locale=ua" for 127.0.0.1 at 2016-11-19 18:32:21 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (2.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (3.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (76.9ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (9.1ms)
+  Rendered carts/_order.html.haml (28.9ms)
+  Rendered carts/show.html.haml within layouts/application (148.1ms)
+Completed 200 OK in 1515ms (Views: 1141.1ms | ActiveRecord: 43.6ms)
+
+
+Started POST "/cart/order?locale=ua" for 127.0.0.1 at 2016-11-19 18:32:29 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YiUFbjznOIMXvuvoQwUaO7P5mg/lSc+zG5bTNb0C2219/haZunY3fCAJ+xb2RX+RZaSHibclHvAjzby+JDcu3g==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"ua"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 4541f263-90e1-4020-918a-cbf5f047d10f) to Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+Redirected to http://localhost:3000/products?locale=ua
+Completed 302 Found in 78ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-19 18:32:29 +0200
+[ActiveJob] [ActionMailer::DeliveryJob] [4541f263-90e1-4020-918a-cbf5f047d10f] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+[ActiveJob] [ActionMailer::DeliveryJob] [4541f263-90e1-4020-918a-cbf5f047d10f] OrderMailer#order_mail: processed outbound mail in 3.5ms
+[ActiveJob] [ActionMailer::DeliveryJob] [4541f263-90e1-4020-918a-cbf5f047d10f] Performed ActionMailer::DeliveryJob from Async(mailers) in 5.07ms
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (31.6ms)
+Completed 200 OK in 235ms (Views: 223.5ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/cart.71?locale=ua" for 127.0.0.1 at 2016-11-19 18:34:11 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (3.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (1.5ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (22.5ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (7.4ms)
+  Rendered carts/_order.html.haml (26.4ms)
+  Rendered carts/show.html.haml within layouts/application (78.5ms)
+Completed 200 OK in 273ms (Views: 235.7ms | ActiveRecord: 11.8ms)
+
+
+Started POST "/cart/order?locale=ua" for 127.0.0.1 at 2016-11-19 18:34:20 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"eqTF7mXbnZo/7BkI2t3Tk5hDSu4HhE592a+Y6bKWm6plf9YZ40qSZQhbCfZvnbY5Th5XaFXonz7h9PdiK6NuGQ==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 220159df-0b05-421c-850f-226da540c62a) to Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+[ActiveJob] [ActionMailer::DeliveryJob] [220159df-0b05-421c-850f-226da540c62a] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+Redirected to http://localhost:3000/products?locale=ua
+Completed 302 Found in 32ms (ActiveRecord: 2.0ms)
+
+
+[ActiveJob] [ActionMailer::DeliveryJob] [220159df-0b05-421c-850f-226da540c62a] OrderMailer#order_mail: processed outbound mail in 3.5ms
+[ActiveJob] [ActionMailer::DeliveryJob] [220159df-0b05-421c-850f-226da540c62a] Performed ActionMailer::DeliveryJob from Async(mailers) in 9.45ms
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-19 18:34:20 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (20.6ms)
+Completed 200 OK in 195ms (Views: 183.8ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-19 18:36:26 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (57.4ms)
+Completed 200 OK in 1379ms (Views: 1093.6ms | ActiveRecord: 33.2ms)
+
+
+Started GET "/cart.71?locale=ua" for 127.0.0.1 at 2016-11-19 18:36:30 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (2.2ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (46.9ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (7.2ms)
+  Rendered carts/_order.html.haml (28.5ms)
+  Rendered carts/show.html.haml within layouts/application (107.6ms)
+Completed 200 OK in 414ms (Views: 278.8ms | ActiveRecord: 8.1ms)
+
+
+Started POST "/cart/order?locale=ua" for 127.0.0.1 at 2016-11-19 18:36:36 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CEif23jRHocwCrwXwTKtlJUXe/FkxA+PjypWyJXDhlcXk4ws/kAReAe9rOl0csg+Q0pmdzao3sy3cTlDDPZz5A==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"ua"}
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 98db4b84-6138-481f-a162-0696961a86bd) to Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+Redirected to http://localhost:3000/products?locale=ua
+Completed 302 Found in 79ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-19 18:36:36 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (2.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (4.8ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (32.1ms)
+[ActiveJob] [ActionMailer::DeliveryJob] [98db4b84-6138-481f-a162-0696961a86bd] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+[ActiveJob] [ActionMailer::DeliveryJob] [98db4b84-6138-481f-a162-0696961a86bd] OrderMailer#order_mail: processed outbound mail in 3.5ms
+[ActiveJob] [ActionMailer::DeliveryJob] [98db4b84-6138-481f-a162-0696961a86bd] Performed ActionMailer::DeliveryJob from Async(mailers) in 36.68ms
+Completed 200 OK in 285ms (Views: 266.3ms | ActiveRecord: 7.8ms)
+
+
+Started GET "/cart.71?locale=ua" for 127.0.0.1 at 2016-11-19 18:37:08 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (2.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (2.6ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (29.5ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (8.2ms)
+  Rendered carts/_order.html.haml (27.6ms)
+  Rendered carts/show.html.haml within layouts/application (94.6ms)
+Completed 200 OK in 328ms (Views: 289.4ms | ActiveRecord: 13.5ms)
+
+
+Started POST "/cart/order?locale=ua" for 127.0.0.1 at 2016-11-19 18:37:15 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qqYiUuj2SADbdW4fZ2m0y8D88zgUVMv0xYDhkEuNaQe1fTGlbmdH/+zCfuHSKdFhFqHuvkY4Grf9244b0rictA==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"ua"}
+  [1m[36mCart Load (1.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 658e46d5-cec6-4f72-8e5a-2afee8a98925) to Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+Redirected to http://localhost:3000/products?locale=ua
+[ActiveJob] [ActionMailer::DeliveryJob] [658e46d5-cec6-4f72-8e5a-2afee8a98925] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", nil, nil
+Completed 302 Found in 20ms (ActiveRecord: 4.2ms)
+
+
+[ActiveJob] [ActionMailer::DeliveryJob] [658e46d5-cec6-4f72-8e5a-2afee8a98925] OrderMailer#order_mail: processed outbound mail in 6.9ms
+[ActiveJob] [ActionMailer::DeliveryJob] [658e46d5-cec6-4f72-8e5a-2afee8a98925] Performed ActionMailer::DeliveryJob from Async(mailers) in 11.56ms
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-19 18:37:15 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (24.4ms)
+Completed 200 OK in 233ms (Views: 215.4ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/cart.71?locale=ua" for 127.0.0.1 at 2016-11-19 18:53:11 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (3.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (78.6ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (7.8ms)
+  Rendered carts/_order.html.haml (27.6ms)
+  Rendered carts/show.html.haml within layouts/application (145.7ms)
+Completed 200 OK in 1548ms (Views: 1151.8ms | ActiveRecord: 39.2ms)
+
+
+Started POST "/cart/order?locale=ua" for 127.0.0.1 at 2016-11-19 18:53:18 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Zp8W4M3x0g2uRmVZlnR0EMThYC3jWgwMPd85udnlZd55RAUXS2Dd8pnxdacjNBG6Erx9q7E23U8FhFYyQNCQbQ==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"ua"}
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 296b33a6-e7c0-46d7-97cf-b45411c99274) to Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", "ogajvoronsky@gmail.com", nil
+Redirected to http://localhost:3000/products?locale=ua
+Completed 302 Found in 82ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/products?locale=ua" for 127.0.0.1 at 2016-11-19 18:53:18 +0200
+[ActiveJob] [ActionMailer::DeliveryJob] [296b33a6-e7c0-46d7-97cf-b45411c99274] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "OrderMailer", "order_mail", "deliver_now", "ogajvoronsky@gmail.com", nil
+[ActiveJob] [ActionMailer::DeliveryJob] [296b33a6-e7c0-46d7-97cf-b45411c99274]   Rendering order_mailer/order_mail.html.haml within layouts/mailer
+[ActiveJob] [ActionMailer::DeliveryJob] [296b33a6-e7c0-46d7-97cf-b45411c99274]   Rendered order_mailer/order_mail.html.haml within layouts/mailer (12.1ms)
+[ActiveJob] [ActionMailer::DeliveryJob] [296b33a6-e7c0-46d7-97cf-b45411c99274] OrderMailer#order_mail: processed outbound mail in 49.4ms
+[ActiveJob] [ActionMailer::DeliveryJob] [296b33a6-e7c0-46d7-97cf-b45411c99274] Performed ActionMailer::DeliveryJob from Async(mailers) in 51.23ms
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (3.0ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (24.7ms)
+Completed 200 OK in 232ms (Views: 217.5ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/cart.71?locale=ua" for 127.0.0.1 at 2016-11-19 18:58:16 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"ua"}
+  [1m[36mCart Load (1.9ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (1.7ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (92.4ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (7.3ms)
+  Rendered carts/_order.html.haml (27.0ms)
+  Rendered carts/show.html.haml within layouts/application (164.0ms)
+Completed 200 OK in 1605ms (Views: 1207.3ms | ActiveRecord: 49.0ms)
+
+
+Started POST "/cart/order?locale=ua" for 127.0.0.1 at 2016-11-19 18:58:25 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"06hAd34K0RxQyGk0rloRVU334HTO9CX/zvt6IyCarh7Mc1OA+Jve42d/ecobGnT/m6r98pyY9Lz2oBWoua9brQ==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"ua"}
+  [1m[36mCart Load (3.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (7.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering order_mailer/order_mail.html.haml within layouts/mailer
+  Rendered order_mailer/order_mail.html.haml within layouts/mailer (6.8ms)
+OrderMailer#order_mail: processed outbound mail in 21.9ms
+Completed 500 Internal Server Error in 64ms (ActiveRecord: 11.1ms)
+
+
+  
+ActionView::Template::Error (Invalid tag: "%= Your order:".):
+    1: %h2= Thank for your order.
+    2: %= Your order:
+    3: = render 'carts/current_cart_list'
+  
+app/views/order_mailer/order_mail.html.haml:2
+app/mailers/order_mailer.rb:4:in `order_mail'
+app/controllers/carts_controller.rb:21:in `order'
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (18.0ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.4ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.3ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (97.2ms)
+Started POST "/cart/order?locale=ua" for 127.0.0.1 at 2016-11-19 18:59:20 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"06hAd34K0RxQyGk0rloRVU334HTO9CX/zvt6IyCarh7Mc1OA+Jve42d/ecobGnT/m6r98pyY9Lz2oBWoua9brQ==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"ua"}
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering order_mailer/order_mail.html.haml within layouts/mailer
+  Rendered order_mailer/order_mail.html.haml within layouts/mailer (3.9ms)
+OrderMailer#order_mail: processed outbound mail in 21.2ms
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 3.6ms)
+
+
+  
+SyntaxError (/home/galex/ishop2/app/views/order_mailer/order_mail.html.haml:1: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+...rue_false((Thank for your order.
+...                               ^
+/home/galex/ishop2/app/views/order_mailer/order_mail.html.haml:3: syntax error, unexpected ')'
+));}</p>\n#{_hamlout.format_sc...
+ ^
+/home/galex/ishop2/app/views/order_mailer/order_mail.html.haml:3: unterminated regexp meets end of file
+/home/galex/ishop2/app/views/order_mailer/order_mail.html.haml:3: syntax error, unexpected end-of-input, expecting ')'):
+  
+app/views/order_mailer/order_mail.html.haml:1: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+app/views/order_mailer/order_mail.html.haml:3: syntax error, unexpected ')'
+app/views/order_mailer/order_mail.html.haml:3: unterminated regexp meets end of file
+app/views/order_mailer/order_mail.html.haml:3: syntax error, unexpected end-of-input, expecting ')'
+app/mailers/order_mailer.rb:4:in `order_mail'
+app/controllers/carts_controller.rb:21:in `order'
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (16.5ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.5ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.7ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (87.3ms)
+Started POST "/cart/order?locale=ua" for 127.0.0.1 at 2016-11-19 18:59:49 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"06hAd34K0RxQyGk0rloRVU334HTO9CX/zvt6IyCarh7Mc1OA+Jve42d/ecobGnT/m6r98pyY9Lz2oBWoua9brQ==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"ua"}
+  [1m[36mCart Load (3.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering order_mailer/order_mail.html.haml within layouts/mailer
+  Rendered carts/_current_cart_list.html.haml (10.7ms)
+  Rendered order_mailer/order_mail.html.haml within layouts/mailer (15.5ms)
+OrderMailer#order_mail: processed outbound mail in 57.2ms
+Completed 500 Internal Server Error in 75ms (ActiveRecord: 5.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `count' for nil:NilClass):
+    1: - if @products.count > 0 then
+    2: 
+    3:   %table.table
+    4:     %th=t '.name'
+  
+app/views/carts/_current_cart_list.html.haml:1:in `_app_views_carts__current_cart_list_html_haml___2048887761614871659_70280235122200'
+app/views/order_mailer/order_mail.html.haml:3:in `_app_views_order_mailer_order_mail_html_haml__3837039655439729566_70280235160940'
+app/mailers/order_mailer.rb:4:in `order_mail'
+app/controllers/carts_controller.rb:21:in `order'
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (17.7ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.7ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.9ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (88.7ms)
+Started GET "/" for 127.0.0.1 at 2016-11-19 19:04:42 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[36mCart Load (2.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (69.9ms)
+Completed 200 OK in 1400ms (Views: 1079.0ms | ActiveRecord: 42.9ms)
+
+
+Started GET "/cart.71?locale=en" for 127.0.0.1 at 2016-11-19 19:04:46 +0200
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.3ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (2.2ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (51.6ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (9.2ms)
+  Rendered carts/_order.html.haml (27.4ms)
+  Rendered carts/show.html.haml within layouts/application (115.8ms)
+Completed 200 OK in 405ms (Views: 322.9ms | ActiveRecord: 11.8ms)
+
+
+Started POST "/cart/order?locale=en" for 127.0.0.1 at 2016-11-19 19:04:52 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dQ26kRJAoxPgRyQES+8WvqmJDb99N4Cz1BBvtFcy5yRq1qlmlNGs7NfwNPr+r3MUf9QQOS9bUfDsSwA/zgcSlw==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"en"}
+  [1m[36mCart Load (1.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering order_mailer/order_mail.html.haml within layouts/mailer
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (2.8ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (39.4ms)
+  Rendered order_mailer/order_mail.html.haml within layouts/mailer (44.1ms)
+OrderMailer#order_mail: processed outbound mail in 55.9ms
+Completed 500 Internal Server Error in 91ms (ActiveRecord: 7.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `products' for nil:NilClass):
+    11:   %tr
+    12:     .bottom-aligned-row
+    13:       = t('.total_price')
+    14:       = @cart.products.sum(:price)
+  
+app/views/carts/_current_cart_list.html.haml:14:in `_app_views_carts__current_cart_list_html_haml__584666421026017594_69961897275980'
+app/views/order_mailer/order_mail.html.haml:3:in `_app_views_order_mailer_order_mail_html_haml___1907216162181376227_69961800318020'
+app/mailers/order_mailer.rb:5:in `order_mail'
+app/controllers/carts_controller.rb:21:in `order'
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (18.4ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.9ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.4ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (71.3ms)
+Started POST "/cart/order?locale=en" for 127.0.0.1 at 2016-11-19 19:06:27 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dQ26kRJAoxPgRyQES+8WvqmJDb99N4Cz1BBvtFcy5yRq1qlmlNGs7NfwNPr+r3MUf9QQOS9bUfDsSwA/zgcSlw==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"en"}
+  [1m[36mCart Load (1.6ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering order_mailer/order_mail.html.haml within layouts/mailer
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered order_mailer/order_mail.html.haml within layouts/mailer (7.7ms)
+OrderMailer#order_mail: processed outbound mail in 33.0ms
+Completed 500 Internal Server Error in 60ms (ActiveRecord: 4.1ms)
+
+
+  
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::E):
+    1: %p= Cursor Education learn project E-Mail
+    2: %p= yield
+  
+app/views/layouts/mailer.html.haml:1:in `_app_views_layouts_mailer_html_haml___138313977971468080_69961829755100'
+app/mailers/order_mailer.rb:5:in `order_mail'
+app/controllers/carts_controller.rb:21:in `order'
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (15.3ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.7ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.8ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (64.6ms)
+Started POST "/cart/order?locale=en" for 127.0.0.1 at 2016-11-19 19:07:23 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dQ26kRJAoxPgRyQES+8WvqmJDb99N4Cz1BBvtFcy5yRq1qlmlNGs7NfwNPr+r3MUf9QQOS9bUfDsSwA/zgcSlw==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"en"}
+  [1m[36mCart Load (1.5ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering order_mailer/order_mail.html.haml within layouts/mailer
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered order_mailer/order_mail.html.haml within layouts/mailer (7.6ms)
+OrderMailer#order_mail: processed outbound mail in 360.7ms
+Sent mail to ogajvoronsky@gmail.com (1933.3ms)
+Date: Sat, 19 Nov 2016 19:07:24 +0200
+From: ogajvoronsky@gmail.com
+To: ogajvoronsky@gmail.com
+Message-ID: <583086cc37fc5_1da71cbf44812566@galex-HP-Pavilion-17.mail>
+Subject: Your order from ishop
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Cursor Education learn project E-Mail</p>
+<p>
+  <h2>Thank for your order.</h2>
+  <p>Your order:</p>
+  <p>#&lt;ActiveRecord::Associations::CollectionProxy [#&lt;Product id: 1, name: &quot;Blender&quot;, description: &quot;fdvsdfgsdfgsdfgsdfg44&quot;, price: 44.0, created_at: &quot;2016-11-01 11:27:25&quot;, updated_at: &quot;2016-11-01 11:27:25&quot;&gt;, #&lt;Product id: 1, name: &quot;Blender&quot;, description: &quot;fdvsdfgsdfgsdfgsdfg44&quot;, price: 44.0, created_at: &quot;2016-11-01 11:27:25&quot;, updated_at: &quot;2016-11-01 11:27:25&quot;&gt;]&gt;</p>
+</p>
+
+Redirected to http://localhost:3000/products?locale=en
+Completed 302 Found in 2323ms (ActiveRecord: 4.8ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-19 19:07:26 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (23.1ms)
+Completed 200 OK in 293ms (Views: 273.9ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/cart.71?locale=en" for 127.0.0.1 at 2016-11-19 19:15:22 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CartsController#show as 
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.7ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering carts/show.html.haml within layouts/application
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (1.6ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (85.3ms)
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (8.6ms)
+  Rendered carts/_order.html.haml (26.7ms)
+  Rendered carts/show.html.haml within layouts/application (143.6ms)
+Completed 200 OK in 1546ms (Views: 1171.8ms | ActiveRecord: 44.5ms)
+
+
+Started POST "/cart/order?locale=en" for 127.0.0.1 at 2016-11-19 19:15:29 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4+Y8uTu8QK5iIcsWVhejUo0XyAlFrpTxeXahjovaabn8PS9OvS1PUVWW2+jjV8b4W0rVjxfCRbJBLc4FEu+cCg==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"en"}
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering order_mailer/order_mail.html.haml within layouts/mailer
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (2.0ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (34.2ms)
+  Rendered order_mailer/order_mail.html.haml within layouts/mailer (38.9ms)
+OrderMailer#order_mail: processed outbound mail in 49.5ms
+Completed 500 Internal Server Error in 87ms (ActiveRecord: 5.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `products' for nil:NilClass):
+    11:   %tr
+    12:     .bottom-aligned-row
+    13:       = t('.total_price')
+    14:       = @cart.products.sum(:price)
+  
+app/views/carts/_current_cart_list.html.haml:14:in `_app_views_carts__current_cart_list_html_haml___291213215024029061_70226718338060'
+app/views/order_mailer/order_mail.html.haml:3:in `_app_views_order_mailer_order_mail_html_haml__1936779676807317007_70226718450420'
+app/mailers/order_mailer.rb:5:in `order_mail'
+app/controllers/carts_controller.rb:21:in `order'
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (18.9ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.8ms)
+  Rendering /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered /home/galex/.rvm/gems/ruby-2.3.0@global/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (69.3ms)
+Started POST "/cart/order?locale=en" for 127.0.0.1 at 2016-11-19 19:17:08 +0200
+Processing by CartsController#order as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4+Y8uTu8QK5iIcsWVhejUo0XyAlFrpTxeXahjovaabn8PS9OvS1PUVWW2+jjV8b4W0rVjxfCRbJBLc4FEu+cCg==", "email"=>"ogajvoronsky@gmail.com", "commit"=>"Order", "locale"=>"en"}
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  Rendering order_mailer/order_mail.html.haml within layouts/mailer
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[36mProduct Load (2.1ms)[0m  [1m[34mSELECT "products".* FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT SUM("products"."price") FROM "products" INNER JOIN "carts_products" ON "products"."id" = "carts_products"."product_id" WHERE "carts_products"."cart_id" = $1[0m  [["cart_id", 71]]
+  Rendered carts/_current_cart_list.html.haml (30.4ms)
+  Rendered order_mailer/order_mail.html.haml within layouts/mailer (35.0ms)
+OrderMailer#order_mail: processed outbound mail in 363.8ms
+Sent mail to ogajvoronsky@gmail.com (1713.9ms)
+Date: Sat, 19 Nov 2016 19:17:09 +0200
+From: ogajvoronsky@gmail.com
+To: ogajvoronsky@gmail.com
+Message-ID: <58308915380ef_1f3730711302881b@galex-HP-Pavilion-17.mail>
+Subject: Your order from ishop
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Cursor Education learn project</p>
+<p>
+  <h2>Thank for your order.</h2>
+  <p>Your order:</p>
+  <table class='table'>
+    <th><span class="translation_missing" title="translation missing: en.carts.current_cart_list.name">Name</span></th>
+    <th><span class="translation_missing" title="translation missing: en.carts.current_cart_list.price">Price</span></th>
+    <tbody></tbody>
+    <tr></tr>
+    <td>Blender</td>
+    <td>44.0</td>
+    <tr></tr>
+    <td>Blender</td>
+    <td>44.0</td>
+  </table>
+  <tr>
+    <div class='bottom-aligned-row'>
+      <span class="translation_missing" title="translation missing: en.carts.current_cart_list.total_price">Total Price</span>
+      88.0
+    </div>
+  </tr>
+</p>
+
+Redirected to http://localhost:3000/products?locale=en
+Completed 302 Found in 2099ms (ActiveRecord: 9.8ms)
+
+
+Started GET "/products?locale=en" for 127.0.0.1 at 2016-11-19 19:17:10 +0200
+Processing by ProductsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mCart Load (1.2ms)[0m  [1m[34mSELECT  "carts".* FROM "carts" WHERE "carts"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering products/index.html.haml within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.haml within layouts/application (28.7ms)
+Completed 200 OK in 260ms (Views: 242.1ms | ActiveRecord: 3.9ms)
+
+

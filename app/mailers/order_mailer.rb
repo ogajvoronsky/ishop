@@ -1,8 +1,7 @@
 class OrderMailer < ApplicationMailer
-  def order_mail(user,products)
-    @user = user
+  def order_mail(email, products)
+    @email = email
     @products = products
-
-    mail(to: @user.email, subject: 'Your order from ishop')
+    mail(to: @email, subject: 'Your order from ishop')
   end
 end

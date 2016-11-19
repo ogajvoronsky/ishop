@@ -9,7 +9,6 @@ class CartsController < ApplicationController
     @product = Product.find(params[:product_id])
     @cart.products << @product
 
-    # CartMailer.create_product_added(@product)
   end
 
   def destroy
@@ -19,8 +18,8 @@ class CartsController < ApplicationController
 
   def order
     @email = params[:email]
-    OrderMailer.order_mail(@user,@products).deliver_later
-    p @email
+    OrderMailer.order_mail(@email, @cart.products).deliver_now
+    redirect_to products_path
   end
 
     private
